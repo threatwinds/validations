@@ -41,16 +41,15 @@ type Kind struct {
 	Kind         string `json:"type" example:"object"`
 	Description  string `json:"description" example:"Important description about the type"`
 	dataType     int
-	Example      string `json:"example" example:"6ee84de3-3d2d-4a70-a918-d0e590d350e0"`
-	Attributes   []Kind
-	Associations []Kind
+	Example      string `json:"example,omitempty" example:"6ee84de3-3d2d-4a70-a918-d0e590d350e0"`
+	Attributes   []Kind `json:"attributes,omitempty"`
+	Associations []Kind `json:"associations,omitempty"`
 }
 
 var File = Kind{
 	Kind:         "file",
 	Description:  "Object identifying a file, the value can be a UUID or a SHA3-256 or MD5 checksum",
 	dataType:     ISTR,
-	Attributes:   []Kind{},
 	Associations: []Kind{Filename, FileData, HashSHA1, HashMD5, HashSHA256, HashSHA3256, FilenamePattern},
 }
 
@@ -72,7 +71,6 @@ var Adversary = Kind{
 	Kind:        "adversary",
 	Description: "Object identifying a threat actor",
 	dataType:    ISTR,
-	Attributes:  []Kind{},
 }
 
 var ASO = Kind{
@@ -821,21 +819,18 @@ var SuricataRule = Kind{
 	Kind:        "suricata-rule",
 	Description: "Suricata rule",
 	dataType:    STR,
-	Example:     "",
 }
 
 var OSSECRule = Kind{
 	Kind:        "ossec-rule",
 	Description: "OSSEC rule",
 	dataType:    STR,
-	Example:     "",
 }
 
 var ElasticRule = Kind{
 	Kind:        "elastic-rule",
 	Description: "Elasticsearch rule",
 	dataType:    STR,
-	Example:     "",
 }
 
 var Kinds = []Kind{
