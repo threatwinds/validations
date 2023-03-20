@@ -39,7 +39,7 @@ const (
 type Kind struct {
 	Kind         string `json:"kind" example:"object"`
 	Description  string `json:"description" example:"Important description about the type"`
-	DataType     string
+	DataType     string `json:"dataType" example:"String"`
 	Example      interface{} `json:"example,omitempty" example:"6ee84de3-3d2d-4a70-a918-d0e590d350e0"`
 	Attributes   []Kind `json:"attributes,omitempty"`
 	Associations []Kind `json:"associations,omitempty"`
