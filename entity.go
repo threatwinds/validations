@@ -10,7 +10,7 @@ import (
 func ValidateValue(value interface{}, kind string) (interface{}, string, *rerror.Error) {
 	for _, def := range Kinds {
 		if def.Kind == kind {
-			switch def.dataType {
+			switch def.DataType {
 			case STR:
 				return ValidateString(value, false)
 			case ISTR:
@@ -29,8 +29,6 @@ func ValidateValue(value interface{}, kind string) (interface{}, string, *rerror
 				return ValidateCity(value)
 			case COUNTRY:
 				return ValidateCountry(value)
-			case KEYVALUE:
-				return ValidateKeyValue(value)
 			case FLOAT:
 				return ValidateFloat(value)
 			case BOOLEAN:
