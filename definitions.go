@@ -37,12 +37,12 @@ const (
 )
 
 type Kind struct {
-	Kind         string `json:"kind" example:"object"`
-	Description  string `json:"description" example:"Important description about the type"`
-	DataType     string `json:"dataType" example:"String"`
+	Kind         string      `json:"kind" example:"object"`
+	Description  string      `json:"description" example:"Important description about the type"`
+	DataType     string      `json:"dataType" example:"String"`
 	Example      interface{} `json:"example,omitempty" example:"6ee84de3-3d2d-4a70-a918-d0e590d350e0"`
-	Attributes   []Kind `json:"attributes,omitempty"`
-	Associations []Kind `json:"associations,omitempty"`
+	Attributes   []Kind      `json:"attributes,omitempty"`
+	Associations []Kind      `json:"associations,omitempty"`
 }
 
 var File = Kind{
@@ -118,20 +118,21 @@ var ABARTN = Kind{
 var Latitude = Kind{
 	Kind:        "latitude",
 	Description: "GPS latitude",
-	Example:     "40.741895",
+	Example:     40.741895,
 	DataType:    FLOAT,
 }
 
 var Longitude = Kind{
 	Kind:        "longitude",
 	Description: "GPS longitude",
-	Example:     "40.741895",
+	Example:     40.741895,
 	DataType:    FLOAT,
 }
 
 var Country = Kind{
 	Kind:        "country",
 	Description: "Country name",
+	Example:     "Estonia",
 	DataType:    COUNTRY,
 }
 
@@ -237,8 +238,9 @@ var ChromeExtension = Kind{
 
 var Subnet = Kind{
 	Kind:        "cidr",
-	Description: "A public network segment like 140.40.24.0/24",
+	Description: "A public network segment",
 	DataType:    CIDR,
+	Example: "140.40.24.0/24",
 	Attributes:  []Kind{Country, City, Latitude, Longitude, ASN, ASO},
 }
 
@@ -274,7 +276,8 @@ var DKIMSignature = Kind{
 
 var Domain = Kind{
 	Kind:        "domain",
-	Description: "Internet domain like example.com",
+	Description: "Internet domain",
+	Example:     "example.com",
 	DataType:    DOMAIN,
 	Attributes:  []Kind{WhoIsRegistrant, WhoIsRegistrar},
 }
@@ -489,8 +492,9 @@ var IDNumber = Kind{
 
 var IPAddr = Kind{
 	Kind:        "ip",
-	Description: "IP Address like 8.8.8.8",
+	Description: "IP Address",
 	DataType:    IP,
+	Example:     "8.8.8.8",
 	Attributes:  []Kind{Subnet},
 }
 
