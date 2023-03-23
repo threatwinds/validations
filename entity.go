@@ -8,7 +8,7 @@ import (
 )
 
 func ValidateValue(value interface{}, t string) (interface{}, string, *rerror.Error) {
-	for _, def := range Kinds {
+	for _, def := range Definitions {
 		if def.Type == t {
 			switch def.DataType {
 			case STR:
@@ -82,5 +82,5 @@ func ValidateValue(value interface{}, t string) (interface{}, string, *rerror.Er
 			}
 		}
 	}
-	return nil, "", rerror.ErrorF(http.StatusBadRequest, codes.InvalidArgument, "unknown kind: %s", t)
+	return nil, "", rerror.ErrorF(http.StatusBadRequest, codes.InvalidArgument, "unknown type: %s", t)
 }

@@ -836,7 +836,7 @@ var ElasticRule = Definition{
 	DataType:    STR,
 }
 
-var Kinds = []Definition{
+var Definitions = []Definition{
 	File,
 	FileData,
 	VirusTotalReport,
