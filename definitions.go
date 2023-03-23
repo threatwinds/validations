@@ -36,807 +36,807 @@ const (
 	ISTR        = "String"
 )
 
-type Kind struct {
-	Kind         string      `json:"kind" example:"object"`
+type Definition struct {
+	Type         string      `json:"type" example:"object"`
 	Description  string      `json:"description" example:"Important description about the type"`
 	DataType     string      `json:"dataType" example:"String"`
 	Example      interface{} `json:"example,omitempty" example:"6ee84de3-3d2d-4a70-a918-d0e590d350e0"`
-	Attributes   []Kind      `json:"attributes,omitempty"`
-	Associations []Kind      `json:"associations,omitempty"`
+	Attributes   []Definition      `json:"attributes,omitempty"`
+	Associations []Definition      `json:"associations,omitempty"`
 }
 
-var File = Kind{
-	Kind:         "file",
+var File = Definition{
+	Type:         "file",
 	Description:  "Object identifying a file, the value can be a UUID or a SHA3-256 or MD5 checksum",
 	DataType:     ISTR,
-	Associations: []Kind{Filename, FileData, HashSHA1, HashMD5, HashSHA256, HashSHA3256, FilenamePattern},
+	Associations: []Definition{Filename, FileData, HashSHA1, HashMD5, HashSHA256, HashSHA3256, FilenamePattern},
 }
 
-var FileData = Kind{
-	Kind:        "file-data",
+var FileData = Definition{
+	Type:        "file-data",
 	Description: "File or attachment URL",
 	DataType:    URL,
-	Attributes:  []Kind{SizeInBytes, HashMD5, HashSHA3256, HashSHA1, HashSHA256},
+	Attributes:  []Definition{SizeInBytes, HashMD5, HashSHA3256, HashSHA1, HashSHA256},
 }
 
-var VirusTotalReport = Kind{
-	Kind:        "virustotal-report",
+var VirusTotalReport = Definition{
+	Type:        "virustotal-report",
 	Description: "VirusTotal report",
 	DataType:    URL,
-	Attributes:  []Kind{Datetime},
+	Attributes:  []Definition{Datetime},
 }
 
-var Adversary = Kind{
-	Kind:        "adversary",
+var Adversary = Definition{
+	Type:        "adversary",
 	Description: "Object identifying a threat actor",
 	DataType:    ISTR,
 }
 
-var ASO = Kind{
-	Kind:        "aso",
+var ASO = Definition{
+	Type:        "aso",
 	Description: "Autonomous System Organization",
 	DataType:    ISTR,
 }
 
-var ASN = Kind{
-	Kind:        "asn",
+var ASN = Definition{
+	Type:        "asn",
 	Description: "Autonomous System Organization Number",
 	DataType:    INTEGER,
 }
 
-var Malware = Kind{
-	Kind:        "malware",
+var Malware = Definition{
+	Type:        "malware",
 	Description: "Malware",
 	DataType:    ISTR,
-	Attributes: []Kind{
+	Attributes: []Definition{
 		MalwareFamily,
 		MalwareType,
 	},
 }
 
-var Object = Kind{
-	Kind:        "object",
+var Object = Definition{
+	Type:        "object",
 	Description: "Generic entity composed of other entities, the value can be a UUID or a SHA3-256 or MD5 checksum",
 	DataType:    ISTR,
-	Attributes: []Kind{
+	Attributes: []Definition{
 		Descriptor,
 	},
 }
 
-var Descriptor = Kind{
-	Kind:        "descriptor",
+var Descriptor = Definition{
+	Type:        "descriptor",
 	DataType:    ISTR,
 	Description: "The object descriptor",
 }
 
-var ABARTN = Kind{
-	Kind:        "aba-rtn",
+var ABARTN = Definition{
+	Type:        "aba-rtn",
 	Description: "ABA routing transit number",
 	DataType:    INTEGER,
 }
 
-var Latitude = Kind{
-	Kind:        "latitude",
+var Latitude = Definition{
+	Type:        "latitude",
 	Description: "GPS latitude",
 	Example:     40.741895,
 	DataType:    FLOAT,
 }
 
-var Longitude = Kind{
-	Kind:        "longitude",
+var Longitude = Definition{
+	Type:        "longitude",
 	Description: "GPS longitude",
 	Example:     40.741895,
 	DataType:    FLOAT,
 }
 
-var Country = Kind{
-	Kind:        "country",
+var Country = Definition{
+	Type:        "country",
 	Description: "Country name",
 	Example:     "Estonia",
 	DataType:    COUNTRY,
 }
 
-var Cookie = Kind{
-	Kind:        "cookie",
+var Cookie = Definition{
+	Type:        "cookie",
 	Description: "HTTP cookie as often stored on the user web client. This can include authentication cookie or session cookie",
 	DataType:    STR,
-	Attributes:  []Kind{Value},
+	Attributes:  []Definition{Value},
 }
 
-var Text = Kind{
-	Kind:        "text",
+var Text = Definition{
+	Type:        "text",
 	Description: "Any case insensitive text value",
 	DataType:    ISTR,
 }
 
-var Value = Kind{
-	Kind:        "value",
+var Value = Definition{
+	Type:        "value",
 	Description: "Any case sensitive text value",
 	DataType:    STR,
 }
 
-var Password = Kind{
-	Kind:        "password",
+var Password = Definition{
+	Type:        "password",
 	Description: "Password",
 	DataType:    STR,
 }
 
-var Airport = Kind{
-	Kind:        "airport-name",
+var Airport = Definition{
+	Type:        "airport-name",
 	Description: "The airport name",
 	DataType:    ISTR,
-	Attributes:  []Kind{Country, City},
+	Attributes:  []Definition{Country, City},
 }
 
-var ProfilePhoto = Kind{
-	Kind:        "profile-photo",
+var ProfilePhoto = Definition{
+	Type:        "profile-photo",
 	Description: "Profile photo URL",
 	DataType:    URL,
 }
 
-var AuthentiHash = Kind{
-	Kind:        "authentihash",
+var AuthentiHash = Definition{
+	Type:        "authentihash",
 	Description: "Authenticode executable signature hash",
 	DataType:    HEXADECIMAL,
 }
 
-var BankAccountNr = Kind{
-	Kind:        "bank-account-nr",
+var BankAccountNr = Definition{
+	Type:        "bank-account-nr",
 	Description: "Bank account number without any routing number",
 	DataType:    INTEGER,
-	Attributes:  []Kind{BIC, BIN},
+	Attributes:  []Definition{BIC, BIN},
 }
 
-var BIC = Kind{
-	Kind:        "bic",
+var BIC = Definition{
+	Type:        "bic",
 	Description: "Bank Identifier Code Number also known as SWIFT-BIC, SWIFT code or ISO 9362 code",
 	DataType:    ISTR,
 }
 
-var BIN = Kind{
-	Kind:        "bin",
+var BIN = Definition{
+	Type:        "bin",
 	Description: "Bank Identification Number",
 	DataType:    INTEGER,
 }
 
-var BTC = Kind{
-	Kind:        "btc",
+var BTC = Definition{
+	Type:        "btc",
 	Description: "Bitcoin Address",
 	DataType:    STR,
 }
 
-var CCNumber = Kind{
-	Kind:        "cc-number",
+var CCNumber = Definition{
+	Type:        "cc-number",
 	Description: "Credit-Card Number",
 	DataType:    INTEGER,
-	Attributes:  []Kind{Issuer},
+	Attributes:  []Definition{Issuer},
 }
 
-var Issuer = Kind{
-	Kind:        "issuer",
+var Issuer = Definition{
+	Type:        "issuer",
 	Description: "Issuer name",
 	DataType:    ISTR,
 }
 
-var CDHash = Kind{
-	Kind:        "cdhash",
+var CDHash = Definition{
+	Type:        "cdhash",
 	Description: "An Apple Code Directory Hash, identifying a code-signed Mach-O executable file",
 	DataType:    HEXADECIMAL,
 }
 
-var CertificateFingerprint = Kind{
-	Kind:        "certificate-fingerprint",
+var CertificateFingerprint = Definition{
+	Type:        "certificate-fingerprint",
 	Description: "The fingerprint of a SSL/TLS certificate",
 	DataType:    HEXADECIMAL,
 }
 
-var ChromeExtension = Kind{
-	Kind:        "chrome-extension-id",
+var ChromeExtension = Definition{
+	Type:        "chrome-extension-id",
 	Description: "Chrome extension ID",
 	DataType:    STR,
 }
 
-var Subnet = Kind{
-	Kind:        "cidr",
+var Subnet = Definition{
+	Type:        "cidr",
 	Description: "A public network segment",
 	DataType:    CIDR,
 	Example: "140.40.24.0/24",
-	Attributes:  []Kind{Country, City, Latitude, Longitude, ASN, ASO},
+	Attributes:  []Definition{Country, City, Latitude, Longitude, ASN, ASO},
 }
 
-var CPE = Kind{
-	Kind:        "cpe",
+var CPE = Definition{
+	Type:        "cpe",
 	Description: "Common Platform Enumeration. Structured naming scheme for information technology systems, software, and packages",
 	DataType:    ISTR,
 }
 
-var CVE = Kind{
-	Kind:        "cve",
+var CVE = Definition{
+	Type:        "cve",
 	Description: "",
 	DataType:    ISTR,
 }
 
-var Dash = Kind{
-	Kind:        "dash",
+var Dash = Definition{
+	Type:        "dash",
 	Description: "Dash address",
 	DataType:    STR,
 }
 
-var DKIM = Kind{
-	Kind:        "dkim",
+var DKIM = Definition{
+	Type:        "dkim",
 	Description: "DKIM public key",
 	DataType:    STR,
 }
 
-var DKIMSignature = Kind{
-	Kind:        "dkim-signature",
+var DKIMSignature = Definition{
+	Type:        "dkim-signature",
 	Description: "DKIM signature",
 	DataType:    STR,
 }
 
-var Domain = Kind{
-	Kind:        "domain",
+var Domain = Definition{
+	Type:        "domain",
 	Description: "Internet domain",
 	Example:     "example.com",
 	DataType:    DOMAIN,
-	Attributes:  []Kind{WhoIsRegistrant, WhoIsRegistrar},
+	Attributes:  []Definition{WhoIsRegistrant, WhoIsRegistrar},
 }
 
-var Email = Kind{
-	Kind:        "email",
+var Email = Definition{
+	Type:        "email",
 	Description: "Email Message ID",
 	DataType:    STR,
 	Example:     "950124.162336@example.com",
-	Attributes:  []Kind{EmailBody, EmailDisplayName, EmailHeader, EmailAddress, EmailSubject},
+	Attributes:  []Definition{EmailBody, EmailDisplayName, EmailHeader, EmailAddress, EmailSubject},
 }
 
-var City = Kind{
-	Kind:        "city",
+var City = Definition{
+	Type:        "city",
 	Description: "City name",
 	DataType:    CITY,
 }
 
-var IssuingCountry = Kind{
-	Kind:        "issuing-country",
+var IssuingCountry = Definition{
+	Type:        "issuing-country",
 	Description: "Issuing country name",
 	DataType:    COUNTRY,
 }
 
-var EmailAddress = Kind{
-	Kind:        "email-address",
+var EmailAddress = Definition{
+	Type:        "email-address",
 	Description: "Sender email address",
 	DataType:    EMAIL,
 }
 
-var EmailBody = Kind{
-	Kind:        "email-body",
+var EmailBody = Definition{
+	Type:        "email-body",
 	Description: "Email body",
 	DataType:    ISTR,
 }
 
-var EmailDisplayName = Kind{
-	Kind:        "email-display-name",
+var EmailDisplayName = Definition{
+	Type:        "email-display-name",
 	Description: "Sender display name",
 	DataType:    ISTR,
 }
 
-var EmailHeader = Kind{
-	Kind:        "email-header",
+var EmailHeader = Definition{
+	Type:        "email-header",
 	Description: "Email header (all headers)",
 	DataType:    STR,
 }
 
-var EmailMimeBoundary = Kind{
-	Kind:        "email-mime-boundary",
+var EmailMimeBoundary = Definition{
+	Type:        "email-mime-boundary",
 	Description: "MIME boundaries are strings of 7-bit US-ASCII text that define the boundaries between message parts in a MIME message. MIME boundaries are declared in a Content-Type message header for any message that encapsulates more than one message part and in part headers for those parts that encapsulate nested parts.",
 	DataType:    STR,
 }
 
-var EmailSubject = Kind{
-	Kind:        "email-subject",
+var EmailSubject = Definition{
+	Type:        "email-subject",
 	Description: "The subject of the email",
 	DataType:    ISTR,
 }
 
-var EmailThreadIndex = Kind{
-	Kind:        "email-thread-index",
+var EmailThreadIndex = Definition{
+	Type:        "email-thread-index",
 	Description: "The email thread index",
 	DataType:    BASE64,
 }
 
-var EmailXMailer = Kind{
-	Kind:        "email-x-mailer",
+var EmailXMailer = Definition{
+	Type:        "email-x-mailer",
 	Description: "Email x-mailer header",
 	DataType:    ISTR,
 }
 
-var EPPN = Kind{
-	Kind:        "eppn",
+var EPPN = Definition{
+	Type:        "eppn",
 	Description: "The NetId of the person for the purposes of inter-institutional authentication. Should be stored in the form of user@univ.edu, where univ.edu is the name of the local security domain",
 	DataType:    EMAIL,
 }
 
-var FacebookID = Kind{
-	Kind:        "facebook-id",
+var FacebookID = Definition{
+	Type:        "facebook-id",
 	Description: "Facebook profile",
 	DataType:    URL,
 }
 
-var FFN = Kind{
-	Kind:        "ffn",
+var FFN = Definition{
+	Type:        "ffn",
 	Description: "The frequent flyer number of a passanger",
 	DataType:    STR,
 }
 
-var Filename = Kind{
-	Kind:        "filename",
+var Filename = Definition{
+	Type:        "filename",
 	Description: "A filename or email attachment name",
 	DataType:    ISTR,
 }
 
-var SizeInBytes = Kind{
-	Kind:        "size-in-bytes",
+var SizeInBytes = Definition{
+	Type:        "size-in-bytes",
 	Description: "The size in bytes of an element",
 	DataType:    FLOAT,
 }
 
-var FilenamePattern = Kind{
-	Kind:        "filename-pattern",
+var FilenamePattern = Definition{
+	Type:        "filename-pattern",
 	Description: "A pattern in the name of a file",
 	DataType:    STR,
 }
 
-var Flight = Kind{
-	Kind:        "flight",
+var Flight = Definition{
+	Type:        "flight",
 	Description: "A flight number",
 	DataType:    STR,
 }
 
-var GENE = Kind{
-	Kind:        "gene",
+var GENE = Definition{
+	Type:        "gene",
 	Description: "Go Evtx sigNature Engine",
 	DataType:    STR,
 }
 
-var GitHubOrganization = Kind{
-	Kind:        "github-organization",
+var GitHubOrganization = Definition{
+	Type:        "github-organization",
 	Description: "Github organization",
 	DataType:    URL,
 }
 
-var GitHubRepository = Kind{
-	Kind:        "github-repository",
+var GitHubRepository = Definition{
+	Type:        "github-repository",
 	Description: "Github repository",
 	DataType:    URL,
 }
 
-var GitHubUser = Kind{
-	Kind:        "github-user",
+var GitHubUser = Definition{
+	Type:        "github-user",
 	Description: "Github user",
 	DataType:    URL,
 }
 
-var Link = Kind{
-	Kind:        "link",
+var Link = Definition{
+	Type:        "link",
 	Description: "External link for reference",
 	DataType:    URL,
 }
 
-var Datetime = Kind{
-	Kind:        "datetime",
+var Datetime = Definition{
+	Type:        "datetime",
 	Description: "Time with nanoseconds in the format 2006-01-02T15:04:05.999999999Z07:00",
 	DataType:    DATETIME,
 }
 
-var Date = Kind{
-	Kind:        "date",
+var Date = Definition{
+	Type:        "date",
 	Description: "Date in format 2006-01-02",
 	DataType:    DATE,
 }
 
-var MalwareSample = Kind{
-	Kind:        "malware-sample",
+var MalwareSample = Definition{
+	Type:        "malware-sample",
 	Description: "Malware Sample URL",
 	DataType:    URL,
-	Attributes:  []Kind{Malware, File},
+	Attributes:  []Definition{Malware, File},
 }
 
-var Group = Kind{
-	Kind:        "group",
+var Group = Definition{
+	Type:        "group",
 	Description: "Adversaries group",
 	DataType:    ISTR,
 }
 
-var HaSSHMD5 = Kind{
-	Kind:        "hassh-md5",
+var HaSSHMD5 = Definition{
+	Type:        "hassh-md5",
 	Description: "Network fingerprinting standard which can be used to identify specific Client SSH implementations. The fingerprints can be easily stored, searched and shared in the form of an MD5 fingerprint",
 	DataType:    MD5,
 }
 
-var HaSSHServerMD5 = Kind{
-	Kind:        "hasshserver-md5",
+var HaSSHServerMD5 = Definition{
+	Type:        "hasshserver-md5",
 	Description: "Network fingerprinting standard which can be used to identify specific Server SSH implementations. The fingerprints can be easily stored, searched and shared in the form of an MD5 fingerprint",
 	DataType:    MD5,
 }
 
-var Hex = Kind{
-	Kind:        "hex",
+var Hex = Definition{
+	Type:        "hex",
 	Description: "A value in hexadecimal",
 	DataType:    HEXADECIMAL,
 }
 
-var Base64 = Kind{
-	Kind:        "base64",
+var Base64 = Definition{
+	Type:        "base64",
 	Description: "A value in BASE64 format",
 	DataType:    BASE64,
 }
 
-var Hostname = Kind{
-	Kind:        "hostname",
+var Hostname = Definition{
+	Type:        "hostname",
 	Description: "A full host/dnsname of an attacker",
 	DataType:    HOSTNAME,
 }
 
-var IBAN = Kind{
-	Kind:        "iban",
+var IBAN = Definition{
+	Type:        "iban",
 	Description: "International Bank Account Number",
 	DataType:    ISTR,
 }
 
-var IDNumber = Kind{
-	Kind:        "id-number",
+var IDNumber = Definition{
+	Type:        "id-number",
 	Description: "It can be an ID card, residence permit, etc.",
 	DataType:    STR,
-	Attributes:  []Kind{Issuer, IssuingCountry, Date},
+	Attributes:  []Definition{Issuer, IssuingCountry, Date},
 }
 
-var IPAddr = Kind{
-	Kind:        "ip",
+var IPAddr = Definition{
+	Type:        "ip",
 	Description: "IP Address",
 	DataType:    IP,
 	Example:     "8.8.8.8",
-	Attributes:  []Kind{Subnet},
+	Attributes:  []Definition{Subnet},
 }
 
-var JA3Fingerprint = Kind{
-	Kind:        "ja3-fingerprint-md5",
+var JA3Fingerprint = Definition{
+	Type:        "ja3-fingerprint-md5",
 	Description: "JA3 is a method for creating SSL/TLS client fingerprints that should be easy to produce on any platform and can be easily shared for threat intelligence",
 	DataType:    MD5,
 }
 
-var JabberID = Kind{
-	Kind:        "jabber-id",
+var JabberID = Definition{
+	Type:        "jabber-id",
 	Description: "Jabber ID",
 	DataType:    EMAIL,
 }
 
-var JARMFingerprint = Kind{
-	Kind:        "jarm-fingerprint",
+var JARMFingerprint = Definition{
+	Type:        "jarm-fingerprint",
 	Description: "JARM is a method for creating SSL/TLS server fingerprints",
 	DataType:    HEXADECIMAL,
 }
 
-var MACAddr = Kind{
-	Kind:        "mac-address",
+var MACAddr = Definition{
+	Type:        "mac-address",
 	Description: "Network interface hardware address",
 	DataType:    MAC,
 }
 
-var MalwareFamily = Kind{
-	Kind:        "malware-family",
+var MalwareFamily = Definition{
+	Type:        "malware-family",
 	Description: "Malware family",
 	DataType:    ISTR,
 }
 
-var MalwareType = Kind{
-	Kind:        "malware-type",
+var MalwareType = Definition{
+	Type:        "malware-type",
 	Description: "Malware type",
 	DataType:    ISTR,
 }
 
-var HashMD5 = Kind{
-	Kind:        "md5",
+var HashMD5 = Definition{
+	Type:        "md5",
 	Description: "Hash MD5",
 	DataType:    MD5,
 }
 
-var MimeType = Kind{
-	Kind:        "mime-type",
+var MimeType = Definition{
+	Type:        "mime-type",
 	Description: "A media type (also MIME type and content type) is a two-part identifier",
 	DataType:    MIME,
 }
 
-var MobileAppID = Kind{
-	Kind:        "mobile-app-id",
+var MobileAppID = Definition{
+	Type:        "mobile-app-id",
 	Description: "The ID of a mobile application",
 	DataType:    STR,
 }
 
-var Passport = Kind{
-	Kind:        "passport",
+var Passport = Definition{
+	Type:        "passport",
 	Description: "Passport number",
 	DataType:    STR,
-	Attributes:  []Kind{IssuingCountry, Issuer, Date},
+	Attributes:  []Definition{IssuingCountry, Issuer, Date},
 }
 
-var Path = Kind{
-	Kind:        "path",
+var Path = Definition{
+	Type:        "path",
 	Description: "Path to a file, folder or process, also a HTTP request path",
 	DataType:    STR,
 }
 
-var PatternInFile = Kind{
-	Kind:        "pattern-in-file",
+var PatternInFile = Definition{
+	Type:        "pattern-in-file",
 	Description: "Pattern inside a file",
 	DataType:    STR,
 }
 
-var PatternInMemory = Kind{
-	Kind:        "pattern-in-memory",
+var PatternInMemory = Definition{
+	Type:        "pattern-in-memory",
 	Description: "Pattern in memory",
 	DataType:    STR,
 }
 
-var PatternInTraffic = Kind{
-	Kind:        "pattern-in-traffic",
+var PatternInTraffic = Definition{
+	Type:        "pattern-in-traffic",
 	Description: "Pattern in traffic",
 	DataType:    STR,
 }
 
-var PGPPrivateKey = Kind{
-	Kind:        "pgp-private-key",
+var PGPPrivateKey = Definition{
+	Type:        "pgp-private-key",
 	Description: "PGP private key",
 	DataType:    STR,
 }
 
-var PGPPublicKey = Kind{
-	Kind:        "pgp-public-key",
+var PGPPublicKey = Definition{
+	Type:        "pgp-public-key",
 	Description: "PGP public key",
 	DataType:    STR,
 }
 
-var Phone = Kind{
-	Kind:        "phone",
+var Phone = Definition{
+	Type:        "phone",
 	Description: "Phone number",
 	DataType:    PHONE,
 }
 
-var PNR = Kind{
-	Kind:        "pnr",
+var PNR = Definition{
+	Type:        "pnr",
 	Description: "The Passenger Name Record Locator is a key under which the reservation for a trip is stored in the system. The PNR contains, among other data, the name, flight segments and address of the passenger. It is defined by a combination of five or six letters and numbers",
 	DataType:    STR,
 }
 
-var Process = Kind{
-	Kind:        "process",
+var Process = Definition{
+	Type:        "process",
 	Description: "A running process",
 	DataType:    ISTR,
-	Attributes:  []Kind{ProcessState},
+	Attributes:  []Definition{ProcessState},
 }
 
-var ProcessState = Kind{
-	Kind:        "process-state",
+var ProcessState = Definition{
+	Type:        "process-state",
 	Description: "State of a process",
 	DataType:    ISTR,
 }
 
-var PRTN = Kind{
-	Kind:        "prtn",
+var PRTN = Definition{
+	Type:        "prtn",
 	Description: "Premium-rate telephone number",
 	DataType:    ISTR,
 }
 
-var Redress = Kind{
-	Kind:        "redress-number",
+var Redress = Definition{
+	Type:        "redress-number",
 	Description: "The Redress Control Number is the record identifier for people who apply for redress through the DHS Travel Redress Inquiry Program (DHS TRIP). DHS TRIP is for travelers who have been repeatedly identified for additional screening and who want to file an inquiry to have erroneous information corrected in DHS systems",
 	DataType:    STR,
 }
 
-var RegKey = Kind{
-	Kind:        "regkey",
+var RegKey = Definition{
+	Type:        "regkey",
 	Description: "Registry key",
 	DataType:    ISTR,
 }
 
-var HashSHA1 = Kind{
-	Kind:        "sha1",
+var HashSHA1 = Definition{
+	Type:        "sha1",
 	Description: "Hash SHA1",
 	DataType:    SHA1,
 }
 
-var HashSHA224 = Kind{
-	Kind:        "sha224",
+var HashSHA224 = Definition{
+	Type:        "sha224",
 	Description: "Hash SHA224",
 	DataType:    SHA224,
 }
 
-var HashSHA256 = Kind{
-	Kind:        "sha256",
+var HashSHA256 = Definition{
+	Type:        "sha256",
 	Description: "Hash SHA256",
 	DataType:    SHA256,
 }
 
-var HashSHA384 = Kind{
-	Kind:        "sha384",
+var HashSHA384 = Definition{
+	Type:        "sha384",
 	Description: "Hash SHA384",
 	DataType:    SHA384,
 }
 
-var HashSHA512 = Kind{
-	Kind:        "sha512",
+var HashSHA512 = Definition{
+	Type:        "sha512",
 	Description: "Hash SHA512",
 	DataType:    SHA512,
 }
 
-var HashSHA3224 = Kind{
-	Kind:        "sha3-224",
+var HashSHA3224 = Definition{
+	Type:        "sha3-224",
 	Description: "Hash SHA3-224",
 	DataType:    SHA3_224,
 }
 
-var HashSHA3256 = Kind{
-	Kind:        "sha3-256",
+var HashSHA3256 = Definition{
+	Type:        "sha3-256",
 	Description: "Hash SHA3-256",
 	DataType:    SHA3_256,
 }
 
-var HashSHA3384 = Kind{
-	Kind:        "sha3-384",
+var HashSHA3384 = Definition{
+	Type:        "sha3-384",
 	Description: "Hash SHA3-384",
 	DataType:    SHA3_384,
 }
 
-var HashSHA3512 = Kind{
-	Kind:        "sha3-512",
+var HashSHA3512 = Definition{
+	Type:        "sha3-512",
 	Description: "Hash SHA3-512",
 	DataType:    SHA3_512,
 }
 
-var HashSHA512224 = Kind{
-	Kind:        "sha512-224",
+var HashSHA512224 = Definition{
+	Type:        "sha512-224",
 	Description: "Hash SHA512-224",
 	DataType:    SHA512_224,
 }
 
-var HashSHA512256 = Kind{
-	Kind:        "sha512-256",
+var HashSHA512256 = Definition{
+	Type:        "sha512-256",
 	Description: "Hash SHA512-256",
 	DataType:    SHA512_256,
 }
 
-var SSHFingerprint = Kind{
-	Kind:        "ssh-fingerprint",
+var SSHFingerprint = Definition{
+	Type:        "ssh-fingerprint",
 	Description: "A fingerprint of SSH key material",
 	DataType:    STR,
 }
 
-var SSR = Kind{
-	Kind:        "ssr",
+var SSR = Definition{
+	Type:        "ssr",
 	Description: "A Special Service Request is a function to an airline to provide a particular facility for A Passenger or passengers",
 	DataType:    STR,
 }
 
-var Category = Kind{
-	Kind:        "category",
+var Category = Definition{
+	Type:        "category",
 	Description: "A category",
 	DataType:    ISTR,
 }
 
-var Threat = Kind{
-	Kind:        "threat",
+var Threat = Definition{
+	Type:        "threat",
 	Description: "A cybersecurity threat",
 	DataType:    ISTR,
 }
 
-var TikTokID = Kind{
-	Kind:        "tiktok-id",
+var TikTokID = Definition{
+	Type:        "tiktok-id",
 	Description: "TikTok user ID",
 	DataType:    URL,
 }
 
-var TwitterID = Kind{
-	Kind:        "twitter-id",
+var TwitterID = Definition{
+	Type:        "twitter-id",
 	Description: "A Twitter user ID",
 	DataType:    URL,
 }
 
-var URI = Kind{
-	Kind:        "url",
+var URI = Definition{
+	Type:        "url",
 	Description: "URL",
 	DataType:    URL,
 }
 
-var Username = Kind{
-	Kind:        "username",
+var Username = Definition{
+	Type:        "username",
 	Description: "Username",
 	DataType:    ISTR,
 }
 
-var Visa = Kind{
-	Kind:        "visa",
+var Visa = Definition{
+	Type:        "visa",
 	Description: "Visa number",
 	DataType:    STR,
 }
 
-var WhoIsRegistrant = Kind{
-	Kind:        "whois-registrant",
+var WhoIsRegistrant = Definition{
+	Type:        "whois-registrant",
 	Description: "Who is registrant",
 	DataType:    ISTR,
 }
 
-var WhoIsRegistrar = Kind{
-	Kind:        "whois-registrar",
+var WhoIsRegistrar = Definition{
+	Type:        "whois-registrar",
 	Description: "whois-registrar",
 	DataType:    ISTR,
 }
 
-var WindowsScheduledTask = Kind{
-	Kind:        "windows-scheduled-task",
+var WindowsScheduledTask = Definition{
+	Type:        "windows-scheduled-task",
 	Description: "A Windows scheduled task",
 	DataType:    ISTR,
 }
 
-var WindowsServiceDisplayName = Kind{
-	Kind:        "windows-service-displayname",
+var WindowsServiceDisplayName = Definition{
+	Type:        "windows-service-displayname",
 	Description: "A windows service’s displayname, not to be confused with the windows-service-name. This is the name that applications will generally display as the service’s name in applications",
 	DataType:    ISTR,
 }
 
-var WindowsServiceName = Kind{
-	Kind:        "windows-service-name",
+var WindowsServiceName = Definition{
+	Type:        "windows-service-name",
 	Description: "A windows service name. This is the name used internally by windows. Not to be confused with the windows-service-displayname",
 	DataType:    ISTR,
 }
 
-var XMR = Kind{
-	Kind:        "xmr",
+var XMR = Definition{
+	Type:        "xmr",
 	Description: "Monero address",
 	DataType:    STR,
 }
 
-var X509MD5 = Kind{
-	Kind:        "x509-fingerprint-md5",
+var X509MD5 = Definition{
+	Type:        "x509-fingerprint-md5",
 	Description: "X509 fingerprint in MD5",
 	DataType:    MD5,
 }
 
-var X509SHA1 = Kind{
-	Kind:        "x509-fingerprint-sha1",
+var X509SHA1 = Definition{
+	Type:        "x509-fingerprint-sha1",
 	Description: "X509 fingerprint in SHA1",
 	DataType:    SHA1,
 }
 
-var X509SHA256 = Kind{
-	Kind:        "x509-fingerprint-sha256",
+var X509SHA256 = Definition{
+	Type:        "x509-fingerprint-sha256",
 	Description: "X509 fingerprint in SHA256",
 	DataType:    SHA256,
 }
 
-var YaraRule = Kind{
-	Kind:        "yara-rule",
+var YaraRule = Definition{
+	Type:        "yara-rule",
 	Description: "Yara rule",
 	DataType:    STR,
 }
 
-var SuricataRule = Kind{
-	Kind:        "suricata-rule",
+var SuricataRule = Definition{
+	Type:        "suricata-rule",
 	Description: "Suricata rule",
 	DataType:    STR,
 }
 
-var OSSECRule = Kind{
-	Kind:        "ossec-rule",
+var OSSECRule = Definition{
+	Type:        "ossec-rule",
 	Description: "OSSEC rule",
 	DataType:    STR,
 }
 
-var ElasticRule = Kind{
-	Kind:        "elastic-rule",
+var ElasticRule = Definition{
+	Type:        "elastic-rule",
 	Description: "Elasticsearch rule",
 	DataType:    STR,
 }
 
-var Kinds = []Kind{
+var Kinds = []Definition{
 	File,
 	FileData,
 	VirusTotalReport,

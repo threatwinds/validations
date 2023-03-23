@@ -7,9 +7,9 @@ import (
 	"google.golang.org/grpc/codes"
 )
 
-func ValidateValue(value interface{}, kind string) (interface{}, string, *rerror.Error) {
+func ValidateValue(value interface{}, t string) (interface{}, string, *rerror.Error) {
 	for _, def := range Kinds {
-		if def.Kind == kind {
+		if def.Type == t {
 			switch def.DataType {
 			case STR:
 				return ValidateString(value, false)
@@ -82,5 +82,5 @@ func ValidateValue(value interface{}, kind string) (interface{}, string, *rerror
 			}
 		}
 	}
-	return nil, "", rerror.ErrorF(http.StatusBadRequest, codes.InvalidArgument, "unknown kind: %s", kind)
+	return nil, "", rerror.ErrorF(http.StatusBadRequest, codes.InvalidArgument, "unknown kind: %s", t)
 }
