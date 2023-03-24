@@ -9,10 +9,10 @@ import (
 )
 
 func ValidateInteger(value interface{}) (int64, string, *rerror.Error) {
-	v, ok := value.(int64)
+	v, ok := value.(float64)
 	if !ok {
-		return 0, "", rerror.ErrorF(http.StatusBadRequest, codes.InvalidArgument, "value is not integer: %v", value)
+		return 0, "", rerror.ErrorF(http.StatusBadRequest, codes.InvalidArgument, "value is not numeric: %v", value)
 	}
 
-	return v, GenerateSHA3256(fmt.Sprint(v)), nil
+	return int64(v), GenerateSHA3256(fmt.Sprint(int(v))), nil
 }
