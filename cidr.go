@@ -14,9 +14,14 @@ func ValidateCIDR(value interface{}) (string, string, *rerror.Error) {
 	if !ok {
 		return "", "", rerror.ErrorF(http.StatusBadRequest, codes.InvalidArgument, "value is not string: %v", value)
 	}
-	_, cidr, err := net.ParseCIDR(strings.ToLower(v))
+	ip, cidr, err := net.ParseCIDR(strings.ToLower(v))
 	if err != nil {
 		return "", "", rerror.ErrorF(http.StatusBadRequest, codes.InvalidArgument, err.Error())
+	}
+
+	_, _, e := ValidateIP(ip)
+	if e != nil {
+		return "", "", e
 	}
 
 	cstr := cidr.String()
