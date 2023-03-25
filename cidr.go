@@ -19,7 +19,7 @@ func ValidateCIDR(value interface{}) (string, string, *rerror.Error) {
 		return "", "", rerror.ErrorF(http.StatusBadRequest, codes.InvalidArgument, err.Error())
 	}
 
-	_, _, e := ValidateIP(ip)
+	_, _, e := ValidateIP(ip.String())
 	if e != nil {
 		return "", "", e
 	}
