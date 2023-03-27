@@ -19,10 +19,9 @@ func ValidateURL(value interface{}) (string, string, *rerror.Error) {
 	if err != nil {
 		return "", "", rerror.ErrorF(http.StatusBadRequest, codes.InvalidArgument, err.Error())
 	}
-
-	surl := tmp.String()
 	tmp.Host = strings.ToLower(tmp.Host)
 	tmp.Scheme = strings.ToLower(tmp.Scheme)
 
+	surl := tmp.String()
 	return surl, GenerateSHA3256(surl), nil
 }
