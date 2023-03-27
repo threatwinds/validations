@@ -37,19 +37,27 @@ const (
 )
 
 type Definition struct {
-	Type         string      `json:"type" example:"object"`
-	Description  string      `json:"description" example:"Important description about the type"`
-	DataType     string      `json:"dataType" example:"String"`
-	Example      interface{} `json:"example,omitempty" example:"6ee84de3-3d2d-4a70-a918-d0e590d350e0"`
-	Attributes   []Definition      `json:"attributes,omitempty"`
-	Associations []Definition      `json:"associations,omitempty"`
+	Type         string       `json:"type" example:"object"`
+	Description  string       `json:"description" example:"Important description about the type"`
+	DataType     string       `json:"dataType" example:"String"`
+	Example      interface{}  `json:"example,omitempty" example:"6ee84de3-3d2d-4a70-a918-d0e590d350e0"`
+	Attributes   []Definition `json:"attributes,omitempty"`
+	Associations []Definition `json:"associations,omitempty"`
 }
 
 var File = Definition{
 	Type:         "file",
 	Description:  "Object identifying a file, the value can be a UUID or a SHA3-256 or MD5 checksum",
 	DataType:     ISTR,
-	Associations: []Definition{Filename, FileData, HashSHA1, HashMD5, HashSHA256, HashSHA3256, FilenamePattern},
+	Attributes:   []Definition{FileData, HashSHA1, HashMD5, HashSHA256, HashSHA3256},
+	Associations: []Definition{Filename, FilenamePattern},
+}
+
+var Payload = Definition{
+	Type:         "payload",
+	Description:  "Object that identifies a message sent in a network packet, the value can be a UUID or a SHA3-256 or MD5 checksum",
+	DataType:     ISTR,
+	Attributes:   []Definition{HashSHA1, HashMD5, HashSHA256, HashSHA3256},
 }
 
 var FileData = Definition{
@@ -240,7 +248,7 @@ var Subnet = Definition{
 	Type:        "cidr",
 	Description: "A public network segment",
 	DataType:    CIDR,
-	Example: "140.40.24.0/24",
+	Example:     "140.40.24.0/24",
 	Attributes:  []Definition{Country, City, Latitude, Longitude, ASN, ASO},
 }
 
@@ -283,11 +291,12 @@ var Domain = Definition{
 }
 
 var Email = Definition{
-	Type:        "email",
-	Description: "Email Message ID",
-	DataType:    STR,
-	Example:     "950124.162336@example.com",
-	Attributes:  []Definition{EmailBody, EmailDisplayName, EmailHeader, EmailAddress, EmailSubject},
+	Type:         "email",
+	Description:  "Email Message ID",
+	DataType:     STR,
+	Example:      "950124.162336@example.com",
+	Attributes:   []Definition{EmailBody, EmailDisplayName, EmailHeader, EmailAddress, EmailSubject},
+	Associations: []Definition{File},
 }
 
 var City = Definition{
@@ -965,4 +974,5 @@ var Definitions = []Definition{
 	SuricataRule,
 	OSSECRule,
 	ElasticRule,
+	Payload,
 }
