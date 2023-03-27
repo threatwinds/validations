@@ -19,7 +19,7 @@ func ValidateString(value interface{}, insensitive bool) (string, string, *rerro
 	}
 
 	if insensitive {
-		return v, GenerateSHA3256(strings.ToLower(v)), nil
+		return strings.ToLower(v), GenerateSHA3256(strings.ToLower(v)), nil
 	}
 
 	return v, GenerateSHA3256(v), nil

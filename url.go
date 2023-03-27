@@ -3,6 +3,7 @@ package validations
 import (
 	"net/http"
 	"net/url"
+	"strings"
 
 	"github.com/quantfall/rerror"
 	"google.golang.org/grpc/codes"
@@ -20,5 +21,8 @@ func ValidateURL(value interface{}) (string, string, *rerror.Error) {
 	}
 
 	surl := tmp.String()
+	tmp.Host = strings.ToLower(tmp.Host)
+	tmp.Scheme = strings.ToLower(tmp.Scheme)
+
 	return surl, GenerateSHA3256(surl), nil
 }
