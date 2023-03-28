@@ -885,7 +885,6 @@ var Definitions = []Definition{
 	DKIM,
 	DKIMSignature,
 	Domain,
-	Email,
 	City,
 	IssuingCountry,
 	EmailAddress,
