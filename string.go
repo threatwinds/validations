@@ -5,17 +5,16 @@ import (
 	"strings"
 
 	"github.com/quantfall/rerror"
-	"google.golang.org/grpc/codes"
 )
 
 func ValidateString(value interface{}, insensitive bool) (string, string, *rerror.Error) {
 	v, ok := value.(string)
 	if !ok {
-		return "", "", rerror.ErrorF(http.StatusBadRequest, codes.InvalidArgument, "value is not string: %v", value)
+		return "", "", rerror.ErrorF(http.StatusBadRequest, "value is not string: %v", value)
 	}
 
 	if v == "" {
-		return "", "", rerror.ErrorF(http.StatusBadRequest, codes.InvalidArgument, "value cannot be empty")
+		return "", "", rerror.ErrorF(http.StatusBadRequest, "value cannot be empty")
 	}
 
 	if insensitive {

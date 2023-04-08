@@ -833,6 +833,12 @@ var SuricataRule = Definition{
 	DataType:    STR,
 }
 
+var SnortRule = Definition{
+	Type:        "snort-rule",
+	Description: "Snort rule",
+	DataType:    STR,
+}
+
 var OSSECRule = Definition{
 	Type:        "ossec-rule",
 	Description: "OSSEC rule",
@@ -971,6 +977,7 @@ var Definitions = []Definition{
 	X509SHA256,
 	YaraRule,
 	SuricataRule,
+	SnortRule,
 	OSSECRule,
 	ElasticRule,
 	Payload,

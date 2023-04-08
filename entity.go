@@ -4,7 +4,6 @@ import (
 	"net/http"
 
 	"github.com/quantfall/rerror"
-	"google.golang.org/grpc/codes"
 )
 
 func ValidateValue(value interface{}, t string) (interface{}, string, *rerror.Error) {
@@ -78,9 +77,9 @@ func ValidateValue(value interface{}, t string) (interface{}, string, *rerror.Er
 			case UUID:
 				return ValidateUUID(value)
 			default:
-				return nil, "", rerror.ErrorF(http.StatusInternalServerError, codes.Internal, "unknown validator for value: %v", value)
+				return nil, "", rerror.ErrorF(http.StatusInternalServerError, "unknown validator for value: %v", value)
 			}
 		}
 	}
-	return nil, "", rerror.ErrorF(http.StatusBadRequest, codes.InvalidArgument, "unknown type: %s", t)
+	return nil, "", rerror.ErrorF(http.StatusBadRequest, "unknown type: %s", t)
 }
