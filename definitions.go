@@ -40,7 +40,7 @@ type Definition struct {
 	Type         string       `json:"type" example:"object"`
 	Description  string       `json:"description" example:"Important description about the type"`
 	DataType     string       `json:"dataType" example:"String"`
-	Example      Entity       `json:"example,omitempty" example:"6ee84de3-3d2d-4a70-a918-d0e590d350e0"`
+	Example      *Entity      `json:"example,omitempty"`
 	Attributes   []Definition `json:"attributes,omitempty"`
 	Associations []Definition `json:"associations,omitempty"`
 	Tags         []string     `json:"tags,omitempty"`
@@ -55,7 +55,7 @@ var file = Definition{
 	Associations: []Definition{filename, filenamePattern},
 	Tags:         []string{"malware", "common-file", "system-file"},
 	Correlate:    []string{"md5", "sha1", "sha256", "sha3-256", "file-data"},
-	Example:      eFile,
+	Example:      &eFile,
 }
 
 var payload = Definition{
@@ -106,7 +106,7 @@ var malware = Definition{
 		malwareType,
 	},
 	Correlate: []string{"malware-family", "malware-type"},
-	Example:   eMalware,
+	Example:   &eMalware,
 }
 
 var object = Definition{
