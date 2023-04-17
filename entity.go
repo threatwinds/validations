@@ -76,6 +76,8 @@ func ValidateValue(value interface{}, t string) (interface{}, string, *rerror.Er
 				return ValidateDatetime(value)
 			case UUID:
 				return ValidateUUID(value)
+			case PATH:
+				return ValidatePath(value)
 			default:
 				return nil, "", rerror.ErrorF(http.StatusInternalServerError, "unknown validator for value: %v", value)
 			}

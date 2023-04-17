@@ -34,6 +34,7 @@ const (
 	UUID        = "UUID"
 	BOOLEAN     = "Boolean"
 	ISTR        = "String"
+	PATH        = "Path"
 )
 
 type Definition struct {
@@ -586,10 +587,10 @@ var passport = Definition{
 	Attributes:  []Definition{issuingCountry, issuer, dateOfIssue, expirationDate},
 }
 
-var path = Definition{
+var pathD = Definition{
 	Type:        "path",
 	Description: "Path to a file, folder or process, also a HTTP request path",
-	DataType:    STR,
+	DataType:    PATH,
 }
 
 var patternInFile = Definition{
@@ -954,7 +955,7 @@ var Definitions = []Definition{
 	mimeType,
 	mobileAppID,
 	passport,
-	path,
+	pathD,
 	patternInFile,
 	patternInMemory,
 	patternInTraffic,
