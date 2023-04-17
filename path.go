@@ -13,12 +13,11 @@ func ValidatePath(value interface{}) (string, string, *rerror.Error) {
 		return "", "", rerror.ErrorF(http.StatusBadRequest, "value is not string: %v", value)
 	}
 	
-	_, _, e1 := ValidateURL(value)
-	if e1 == nil {
-		return "", "", rerror.ErrorF(http.StatusBadRequest, "invalid path: %v", v)
-	}
-
 	v = strings.ToLower(v)
+
+	if strings.Contains(v, "://"){
+		return "", "", rerror.ErrorF(http.StatusBadRequest, "value is not valid path: %v", value)
+	}
 
 	return v, GenerateSHA3256(v), nil
 }
