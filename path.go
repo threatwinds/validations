@@ -12,16 +12,13 @@ func ValidatePath(value interface{}) (string, string, *rerror.Error) {
 	if !ok {
 		return "", "", rerror.ErrorF(http.StatusBadRequest, "value is not string: %v", value)
 	}
+	
+	_, _, e1 := ValidateURL(value)
+	if e1 == nil {
+		return "", "", rerror.ErrorF(http.StatusBadRequest, "invalid path: %v", v)
+	}
 
 	v = strings.ToLower(v)
-
-	e1 := ValidateRegEx("^(?:[\\w]\\:)(\\[a-z_\\-\\s0-9.]+)+$", v)
-
-	e2 := ValidateRegEx("^(/?[a-z_\\-\\s0-9.]+)+$", v)
-
-	if e1 != nil && e2 != nil {
-		return "", "", rerror.ErrorF(http.StatusBadRequest, "invalid path: %s", v)
-	}
 
 	return v, GenerateSHA3256(v), nil
 }
