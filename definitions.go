@@ -35,6 +35,7 @@ const (
 	BOOLEAN     = "Boolean"
 	ISTR        = "String"
 	PATH        = "Path"
+	FILE        = "UUID|MD5|SHA3-256"
 )
 
 type Definition struct {
@@ -51,7 +52,7 @@ type Definition struct {
 var file = Definition{
 	Type:         "file",
 	Description:  "Object identifying a file, the value can be a UUID or a SHA3-256 or MD5 checksum",
-	DataType:     ISTR,
+	DataType:     FILE,
 	Attributes:   []Definition{fileData, hashSHA1, hashMD5, hashSHA256, hashSHA3256},
 	Associations: []Definition{filename, filenamePattern},
 	Tags:         []string{"malware", "common-file", "system-file"},
@@ -61,8 +62,8 @@ var file = Definition{
 
 var payload = Definition{
 	Type:        "payload",
-	Description: "Object that identifies a message sent in a network packet, the value can be a UUID or a SHA3-256 or MD5 checksum",
-	DataType:    ISTR,
+	Description: "SHA3-256 of a message sent in a network packet",
+	DataType:    SHA3_256,
 	Attributes:  []Definition{hashSHA1, hashMD5, hashSHA256, hashSHA3256},
 }
 
