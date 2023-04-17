@@ -78,6 +78,10 @@ func ValidateValue(value interface{}, t string) (interface{}, string, *rerror.Er
 				return ValidateUUID(value)
 			case PATH:
 				return ValidatePath(value)
+			case OBJECT:
+				return ValidateObject(value)
+			case ADVERSARY:
+				return ValidateAdversary(value)
 			default:
 				return nil, "", rerror.ErrorF(http.StatusInternalServerError, "unknown validator for value: %v", value)
 			}

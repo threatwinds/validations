@@ -35,7 +35,8 @@ const (
 	BOOLEAN     = "Boolean"
 	ISTR        = "String"
 	PATH        = "Path"
-	FILE        = "UUID|MD5|SHA3-256"
+	OBJECT      = "UUID|MD5|SHA3-256"
+	ADVERSARY   = "Adversary"
 )
 
 type Definition struct {
@@ -52,7 +53,7 @@ type Definition struct {
 var file = Definition{
 	Type:         "file",
 	Description:  "Object identifying a file, the value can be a UUID or a SHA3-256 or MD5 checksum",
-	DataType:     FILE,
+	DataType:     OBJECT,
 	Attributes:   []Definition{fileData, hashSHA1, hashMD5, hashSHA256, hashSHA3256},
 	Associations: []Definition{filename, filenamePattern},
 	Tags:         []string{"malware", "common-file", "system-file"},
@@ -84,7 +85,7 @@ var virusTotalReport = Definition{
 var adversary = Definition{
 	Type:        "adversary",
 	Description: "Object identifying a threat actor",
-	DataType:    ISTR,
+	DataType:    ADVERSARY,
 }
 
 var aso = Definition{
@@ -114,7 +115,7 @@ var malware = Definition{
 var object = Definition{
 	Type:        "object",
 	Description: "Generic entity composed of other entities, the value can be a UUID or a SHA3-256 or MD5 checksum",
-	DataType:    ISTR,
+	DataType:    OBJECT,
 	Attributes: []Definition{
 		descriptor,
 	},
