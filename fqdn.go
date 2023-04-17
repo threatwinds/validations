@@ -7,7 +7,7 @@ import (
 	"github.com/quantfall/rerror"
 )
 
-func ValidateHostOrDomain(value interface{}) (string, string, *rerror.Error) {
+func ValidateFQDN(value interface{}) (string, string, *rerror.Error) {
 	v, ok := value.(string)
 	if !ok {
 		return "", "", rerror.ErrorF(http.StatusBadRequest, "value is not string: %v", value)

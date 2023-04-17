@@ -9,8 +9,6 @@ import (
 func ValidateAdversary(value interface{}) (string, string, *rerror.Error) {
 	_, _, e1 := ValidateURL(value)
 
-	_, _, e2 := ValidatePath(value)
-
 	_, _, e3 := ValidateUUID(value)
 
 	_, _, e4 := ValidateEmail(value)
@@ -19,9 +17,9 @@ func ValidateAdversary(value interface{}) (string, string, *rerror.Error) {
 
 	_, _, e6 := ValidatePhone(value)
 
-	_, _, e7 := ValidateHostOrDomain(value)
+	_, _, e7 := ValidateFQDN(value)
 
-	if e1 == nil || e2 == nil || e3 == nil || e4 == nil || e5 == nil || e6 == nil || e7 == nil {
+	if e1 == nil || e3 == nil || e4 == nil || e5 == nil || e6 == nil || e7 == nil {
 		return "", "", rerror.ErrorF(http.StatusBadRequest, "invalid adversary: %v", value)
 	}
 

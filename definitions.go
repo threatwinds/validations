@@ -4,7 +4,7 @@ const (
 	STR         = "Case-sensitive string"
 	IP          = "IP"
 	EMAIL       = "Email"
-	DOMAIN      = "Domain"
+	FQDN        = "FQDN"
 	INTEGER     = "Integer"
 	CIDR        = "CIDR"
 	CITY        = "City"
@@ -14,7 +14,6 @@ const (
 	MD5         = "MD5"
 	HEXADECIMAL = "Hexadecimal"
 	BASE64      = "BASE64"
-	HOSTNAME    = "Hostname"
 	DATE        = "Date"
 	MAC         = "MAC"
 	MIME        = "MIME type"
@@ -291,7 +290,7 @@ var dkimSignature = Definition{
 var domain = Definition{
 	Type:        "domain",
 	Description: "Internet domain",
-	DataType:    DOMAIN,
+	DataType:    FQDN,
 	Attributes:  []Definition{whoIsRegistrant, whoIsRegistrar},
 }
 
@@ -505,7 +504,7 @@ var base64d = Definition{
 var hostname = Definition{
 	Type:        "hostname",
 	Description: "A full host/dnsname of an attacker",
-	DataType:    HOSTNAME,
+	DataType:    FQDN,
 }
 
 var iban = Definition{

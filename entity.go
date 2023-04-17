@@ -18,8 +18,8 @@ func ValidateValue(value interface{}, t string) (interface{}, string, *rerror.Er
 				return ValidateIP(value)
 			case EMAIL:
 				return ValidateEmail(value)
-			case DOMAIN:
-				return ValidateHostOrDomain(value)
+			case FQDN:
+				return ValidateFQDN(value)
 			case INTEGER:
 				return ValidateInteger(value)
 			case CIDR:
@@ -40,8 +40,6 @@ func ValidateValue(value interface{}, t string) (interface{}, string, *rerror.Er
 				return ValidateHexadecimal(value)
 			case BASE64:
 				return ValidateBase64(value)
-			case HOSTNAME:
-				return ValidateHostOrDomain(value)
 			case DATE:
 				return ValidateDate(value)
 			case MAC:
