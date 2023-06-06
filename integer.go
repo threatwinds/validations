@@ -15,7 +15,7 @@ func ValidateInteger(value interface{}) (int64, string, *rerror.Error) {
 	}
 	v, ok := value.(int64)
 	if !ok {
-		return 0, "", rerror.ErrorF(http.StatusBadRequest, "value is not integer: %v", value)
+		return 0, "", rerror.ErrorF(false, http.StatusBadRequest, "TYPE_VALIDATION", "value is not integer: %v", value)
 	}
 
 	return int64(v), GenerateSHA3256(fmt.Sprint(int(v))), nil

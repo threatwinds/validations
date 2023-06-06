@@ -20,5 +20,5 @@ func ValidateObject(value interface{}) (string, string, *rerror.Error) {
 		return s3, h3, nil
 	}
 
-	return "", "", rerror.ErrorF(http.StatusBadRequest, "invalid object: %v", value)
+	return "", "", rerror.ErrorF(false, http.StatusBadRequest, "TYPE_VALIDATION", "invalid object: %v", value)
 }

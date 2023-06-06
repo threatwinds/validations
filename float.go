@@ -15,7 +15,7 @@ func ValidateFloat(value interface{}) (float64, string, *rerror.Error) {
 	}
 	v, ok := value.(float64)
 	if !ok {
-		return 0, "", rerror.ErrorF(http.StatusBadRequest, "value is not float: %v", value)
+		return 0, "", rerror.ErrorF(false, http.StatusBadRequest, "TYPE_VALIDATION", "value is not float: %v", value)
 	}
 
 	return v, GenerateSHA3256(fmt.Sprint(v)), nil

@@ -81,9 +81,9 @@ func ValidateValue(value interface{}, t string) (interface{}, string, *rerror.Er
 			case ADVERSARY:
 				return ValidateAdversary(value)
 			default:
-				return nil, "", rerror.ErrorF(http.StatusInternalServerError, "unknown validator for value: %v", value)
+				return nil, "", rerror.ErrorF(true, http.StatusInternalServerError, "INTERNAL", "unknown validator for value: %v", value)
 			}
 		}
 	}
-	return nil, "", rerror.ErrorF(http.StatusBadRequest, "unknown type: %s", t)
+	return nil, "", rerror.ErrorF(false, http.StatusBadRequest, "TYPE_VALIDATION", "unknown type: %s", t)
 }

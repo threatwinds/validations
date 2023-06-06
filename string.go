@@ -10,11 +10,11 @@ import (
 func ValidateString(value interface{}, insensitive bool) (string, string, *rerror.Error) {
 	v, ok := value.(string)
 	if !ok {
-		return "", "", rerror.ErrorF(http.StatusBadRequest, "value is not string: %v", value)
+		return "", "", rerror.ErrorF(false, http.StatusBadRequest, "TYPE_VALIDATION", "value is not string: %v", value)
 	}
 
 	if v == "" {
-		return "", "", rerror.ErrorF(http.StatusBadRequest, "value cannot be empty")
+		return "", "", rerror.ErrorF(false, http.StatusBadRequest, "TYPE_VALIDATION", "value cannot be empty")
 	}
 
 	if insensitive {
