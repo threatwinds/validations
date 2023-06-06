@@ -841,36 +841,6 @@ var x509SHA256 = Definition{
 	DataType:    SHA256,
 }
 
-var yaraRule = Definition{
-	Type:        "yara-rule",
-	Description: "Yara rule",
-	DataType:    STR,
-}
-
-var suricataRule = Definition{
-	Type:        "suricata-rule",
-	Description: "Suricata rule",
-	DataType:    STR,
-}
-
-var snortRule = Definition{
-	Type:        "snort-rule",
-	Description: "Snort rule",
-	DataType:    STR,
-}
-
-var ossecRule = Definition{
-	Type:        "ossec-rule",
-	Description: "OSSEC rule",
-	DataType:    STR,
-}
-
-var elasticRule = Definition{
-	Type:        "elastic-rule",
-	Description: "Elasticsearch rule",
-	DataType:    STR,
-}
-
 var Definitions = []Definition{
 	file,
 	fileData,
@@ -997,11 +967,6 @@ var Definitions = []Definition{
 	xmr,
 	x509MD5,
 	x509SHA1,
-	x509SHA256,
-	yaraRule,
-	suricataRule,
-	snortRule,
-	ossecRule,
-	elasticRule,
+	x509SHA256,	
 	payload,
 }
