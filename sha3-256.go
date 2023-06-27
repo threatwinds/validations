@@ -2,17 +2,16 @@ package validations
 
 import (
 	"encoding/hex"
-	"net/http"
+	"fmt"
 	"strings"
 
-	"github.com/quantfall/rerror"
 	"golang.org/x/crypto/sha3"
 )
 
-func ValidateSHA3256(value interface{}) (string, string, *rerror.Error) {
+func ValidateSHA3256(value interface{}) (string, string, error) {
 	v, ok := value.(string)
 	if !ok {
-		return "", "", rerror.ErrorF(false, http.StatusBadRequest, "TYPE_VALIDATION", "value is not string: %v", value)
+		return "", "", fmt.Errorf("value is not string: %v", value)
 	}
 	v = strings.ToLower(v)
 	e := ValidateRegEx(`^[0-9a-f]{64}$`, v)

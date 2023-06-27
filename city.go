@@ -1,18 +1,17 @@
 package validations
 
 import (
-	"net/http"
+	"fmt"
 	"strings"
 
-	"github.com/quantfall/rerror"
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
 )
 
-func ValidateCity(value interface{}) (string, string, *rerror.Error) {
+func ValidateCity(value interface{}) (string, string, error) {
 	v, ok := value.(string)
 	if !ok {
-		return "", "", rerror.ErrorF(false, http.StatusBadRequest, "TYPE_VALIDATION", "value is not string: %v", value)
+		return "", "", fmt.Errorf("value is not string: %v", value)
 	}
 
 	v = cases.Title(language.English).String(strings.ToLower(v))

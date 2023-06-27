@@ -1,21 +1,19 @@
 package validations
 
 import (
+	"fmt"
 	"net"
-	"net/http"
 	"strings"
-
-	"github.com/quantfall/rerror"
 )
 
-func ValidateCIDR(value interface{}) (string, string, *rerror.Error) {
+func ValidateCIDR(value interface{}) (string, string, error) {
 	v, ok := value.(string)
 	if !ok {
-		return "", "", rerror.ErrorF(false, http.StatusBadRequest, "TYPE_VALIDATION", "value is not string: %v", value)
+		return "", "", fmt.Errorf("value is not string: %v", value)
 	}
 	ip, cidr, err := net.ParseCIDR(strings.ToLower(v))
 	if err != nil {
-		return "", "", rerror.ErrorF(false, http.StatusBadRequest, "TYPE_VALIDATION", err.Error())
+		return "", "", err
 	}
 
 	_, _, e := ValidateIP(ip.String())

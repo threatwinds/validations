@@ -1,12 +1,10 @@
 package validations
 
 import (
-	"net/http"
-
-	"github.com/quantfall/rerror"
+	"fmt"
 )
 
-func ValidateValue(value interface{}, t string) (interface{}, string, *rerror.Error) {
+func ValidateValue(value interface{}, t string) (interface{}, string, error) {
 	for _, def := range Definitions {
 		if def.Type == t {
 			switch def.DataType {
@@ -81,9 +79,9 @@ func ValidateValue(value interface{}, t string) (interface{}, string, *rerror.Er
 			case ADVERSARY:
 				return ValidateAdversary(value)
 			default:
-				return nil, "", rerror.ErrorF(true, http.StatusInternalServerError, "INTERNAL", "unknown validator for value: %v", value)
+				return nil, "", fmt.Errorf("unknown validator for value: %v", value)
 			}
 		}
 	}
-	return nil, "", rerror.ErrorF(false, http.StatusBadRequest, "TYPE_VALIDATION", "unknown type: %s", t)
+	return nil, "", fmt.Errorf("unknown type: %s", t)
 }

@@ -1,22 +1,21 @@
 package validations
 
 import (
-	"net/http"
+	"fmt"
 	"strings"
 
 	"github.com/google/uuid"
-	"github.com/quantfall/rerror"
 )
 
-func ValidateUUID(value interface{}) (uuid.UUID, string, *rerror.Error) {
+func ValidateUUID(value interface{}) (uuid.UUID, string, error) {
 	v, ok := value.(string)
 	if !ok {
-		return uuid.UUID{}, "", rerror.ErrorF(false, http.StatusBadRequest, "TYPE_VALIDATION", "value is not string: %v", value)
+		return uuid.UUID{}, "", fmt.Errorf("value is not string: %v", value)
 	}
 
 	u, err := uuid.Parse(strings.ToLower(v))
 	if err != nil {
-		return uuid.UUID{}, "", rerror.ErrorF(false, http.StatusBadRequest, "TYPE_VALIDATION", err.Error())
+		return uuid.UUID{}, "", err
 	}
 
 	return u, GenerateSHA3256(u.String()), nil

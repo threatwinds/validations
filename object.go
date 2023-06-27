@@ -1,12 +1,8 @@
 package validations
 
-import (
-	"net/http"
+import "fmt"
 
-	"github.com/quantfall/rerror"
-)
-
-func ValidateObject(value interface{}) (string, string, *rerror.Error) {
+func ValidateObject(value interface{}) (string, string, error) {
 	s1, h1, e1 := ValidateUUID(value)
 	if e1 == nil {
 		return s1.String(), h1, nil
@@ -20,5 +16,5 @@ func ValidateObject(value interface{}) (string, string, *rerror.Error) {
 		return s3, h3, nil
 	}
 
-	return "", "", rerror.ErrorF(false, http.StatusBadRequest, "TYPE_VALIDATION", "invalid object: %v", value)
+	return "", "", fmt.Errorf("invalid object: %v", value)
 }
