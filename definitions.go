@@ -74,13 +74,6 @@ var fileData = Definition{
 	Attributes:  []Definition{},
 }
 
-var virusTotalReport = Definition{
-	Type:        "virustotal-report",
-	Description: "VirusTotal report",
-	DataType:    URL,
-	Attributes:  []Definition{lastAnalysis},
-}
-
 var adversary = Definition{
 	Type:        "adversary",
 	Description: "Object identifying a threat actor",
@@ -841,10 +834,38 @@ var x509SHA256 = Definition{
 	DataType:    SHA256,
 }
 
+var breach = Definition{
+	Type: "breach",
+	Description: "Security breach that resulted in a leak of PII or SPII",
+	DataType: UUID,
+	Attributes: []Definition{domain, link, breachDate, breachCount, breachDescription},
+}
+
+var breachDate = Definition{
+	Type: "breach-date",
+	Description: "Day the breach occurred",
+	DataType: DATE,
+}
+
+var breachCount = Definition{
+	Type: "breach-count",
+	Description: "Number of items leaked in the breach",
+	DataType: INTEGER,
+}
+
+var breachDescription = Definition{
+	Type: "breach-description",
+	Description: "Detailed description of the breach",
+	DataType: STR,
+}
+
 var Definitions = []Definition{
+	breach,
+	breachDate,
+	breachCount,
+	breachDescription,
 	file,
 	fileData,
-	virusTotalReport,
 	lastAnalysis,
 	adversary,
 	aso,
