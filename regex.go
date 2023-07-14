@@ -18,3 +18,17 @@ func ValidateRegEx(regex, value string) error {
 
 	return nil
 }
+
+func ValidateRegexComp(value interface{}) (string, string, error) {
+	v, ok := value.(string)
+	if !ok {
+		return "", "", fmt.Errorf("value is not string: %v", value)
+	}
+
+	_, err := regexp.Compile(v)
+	if err != nil {
+		return "", "", err
+	}
+
+	return v, GenerateSHA3256(v), nil
+}
