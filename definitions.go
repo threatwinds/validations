@@ -225,7 +225,7 @@ var btc = Definition{
 
 var ccNumber = Definition{
 	Type:        "cc-number",
-	Description: "Credit-Card Number",
+	Description: "Credit Card Number",
 	DataType:    INTEGER,
 	Attributes:  []Definition{issuer},
 	EntryPoint:  true,
@@ -365,7 +365,6 @@ var emailSubject = Definition{
 	Type:        "email-subject",
 	Description: "The subject of the email",
 	DataType:    ISTR,
-	EntryPoint:  true,
 }
 
 var emailThreadIndex = Definition{
@@ -406,7 +405,6 @@ var filename = Definition{
 	Type:        "filename",
 	Description: "A filename or email attachment name",
 	DataType:    ISTR,
-	EntryPoint:  true,
 }
 
 var sizeInBytes = Definition{
@@ -494,7 +492,7 @@ var malwareSample = Definition{
 var group = Definition{
 	Type:        "group",
 	Description: "Adversaries group",
-	DataType:    ISTR,
+	DataType:    ADVERSARY,
 	EntryPoint:  true,
 }
 
