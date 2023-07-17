@@ -942,7 +942,6 @@ var postalAddress = Definition{
 	Type:        "postal-address",
 	Description: "Postal address",
 	DataType:    ISTR,
-	EntryPoint:  true,
 }
 
 var zipCode = Definition{
@@ -955,10 +954,24 @@ var port = Definition{
 	Type:        "port",
 	Description: "TCP/UDP Port",
 	DataType:    INTEGER,
-	EntryPoint:  true,
+}
+
+var os = Definition{
+	Type: "os",
+	Description: "Operating System",
+	DataType: ISTR,
+}
+
+var command = Definition{
+	Type: "command",
+	Description: "A cli command",
+	DataType: STR,
+	Attributes: []Definition{os},
 }
 
 var Definitions = []Definition{
+	command,
+	os,
 	port,
 	zipCode,
 	postalAddress,
