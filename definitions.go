@@ -48,7 +48,7 @@ type Definition struct {
 	Associations []Definition `json:"associations,omitempty"`
 	Tags         []string     `json:"tags,omitempty"`
 	Correlate    []string     `json:"correlate,omitempty"`
-	EntryPoint   bool         `json:"entryPoint,omitempty"`
+	Label        string       `json:"label,omitempty"`
 }
 
 var file = Definition{
@@ -60,6 +60,7 @@ var file = Definition{
 	Tags:         []string{"malware", "common-file", "system-file"},
 	Correlate:    []string{"md5", "sha1", "sha256", "sha3-256", "file-data"},
 	Example:      &eFile,
+	Label:        "File",
 }
 
 var payload = Definition{
@@ -67,7 +68,7 @@ var payload = Definition{
 	Description: "SHA3-256 of a message sent in a network packet",
 	DataType:    SHA3_256,
 	Attributes:  []Definition{hashSHA1, hashMD5, hashSHA256, hashSHA3256},
-	EntryPoint:  true,
+	Label:       "Payload",
 }
 
 var fileData = Definition{
@@ -75,25 +76,28 @@ var fileData = Definition{
 	Description: "File or attachment URL",
 	DataType:    URL,
 	Attributes:  []Definition{},
+	Label:       "Download",
 }
 
 var adversary = Definition{
 	Type:        "adversary",
 	Description: "Object identifying a threat actor",
 	DataType:    ADVERSARY,
-	EntryPoint:  true,
+	Label:       "Adversary",
 }
 
 var aso = Definition{
 	Type:        "aso",
 	Description: "Autonomous System Organization",
 	DataType:    ISTR,
+	Label:       "ASO",
 }
 
 var asn = Definition{
 	Type:        "asn",
 	Description: "Autonomous System Organization Number",
 	DataType:    INTEGER,
+	Label:       "ASN",
 }
 
 var malware = Definition{
@@ -104,48 +108,44 @@ var malware = Definition{
 		malwareFamily,
 		malwareType,
 	},
-	Correlate:  []string{"malware-family", "malware-type"},
-	Example:    &eMalware,
-	EntryPoint: true,
-}
-
-var object = Definition{
-	Type:        "object",
-	Description: "Generic entity composed of other entities, the value can be a UUID or a SHA3-256 or MD5 checksum",
-	DataType:    OBJECT,
-	Attributes: []Definition{
-		descriptor,
-	},
-}
-
-var descriptor = Definition{
-	Type:        "descriptor",
-	DataType:    ISTR,
-	Description: "The object descriptor",
+	Correlate: []string{"malware-family", "malware-type"},
+	Example:   &eMalware,
+	Label:     "Malware Name",
 }
 
 var abaRtn = Definition{
 	Type:        "aba-rtn",
 	Description: "ABA routing transit number",
 	DataType:    INTEGER,
+	Label:       "ABA RTN",
 }
 
 var latitude = Definition{
 	Type:        "latitude",
 	Description: "GPS latitude",
 	DataType:    FLOAT,
+	Label:       "Latitude",
 }
 
 var longitude = Definition{
 	Type:        "longitude",
 	Description: "GPS longitude",
 	DataType:    FLOAT,
+	Label:       "Longitude",
 }
 
 var country = Definition{
 	Type:        "country",
 	Description: "Country name",
 	DataType:    COUNTRY,
+	Label:       "Country",
+}
+
+var city = Definition{
+	Type:        "city",
+	Description: "City name",
+	DataType:    CITY,
+	Label:       "City",
 }
 
 var cookie = Definition{
@@ -153,26 +153,28 @@ var cookie = Definition{
 	Description:  "HTTP cookie as often stored on the user web client. This can include authentication cookie or session cookie",
 	DataType:     STR,
 	Associations: []Definition{value},
-	EntryPoint:   true,
+	Label:        "Cookie",
 }
 
 var text = Definition{
 	Type:        "text",
 	Description: "Any case insensitive text value",
 	DataType:    ISTR,
+	Label:       "Text",
 }
 
 var value = Definition{
 	Type:        "value",
 	Description: "Any case sensitive text value",
 	DataType:    STR,
+	Label:       "Text",
 }
 
 var password = Definition{
 	Type:        "password",
 	Description: "Password",
 	DataType:    STR,
-	EntryPoint:  true,
+	Label:       "Password",
 }
 
 var airport = Definition{
@@ -180,20 +182,21 @@ var airport = Definition{
 	Description: "The airport name",
 	DataType:    ISTR,
 	Attributes:  []Definition{country, city},
+	Label:       "Airport",
 }
 
 var profilePhoto = Definition{
 	Type:        "profile-photo",
 	Description: "Profile photo URL",
 	DataType:    URL,
-	EntryPoint:  true,
+	Label:       "Profile Photo",
 }
 
 var authentiHash = Definition{
 	Type:        "authentihash",
 	Description: "Authenticode executable signature hash",
 	DataType:    HEXADECIMAL,
-	EntryPoint:  true,
+	Label:       "Authenticode Hash",
 }
 
 var bankAccountNr = Definition{
@@ -201,26 +204,28 @@ var bankAccountNr = Definition{
 	Description: "Bank account number without any routing number",
 	DataType:    INTEGER,
 	Attributes:  []Definition{bic, bin},
-	EntryPoint:  true,
+	Label:       "Bank Account",
 }
 
 var bic = Definition{
 	Type:        "bic",
 	Description: "Bank Identifier Code also known as SWIFT-BIC, SWIFT code or ISO 9362 code",
 	DataType:    ISTR,
+	Label:       "BIC",
 }
 
 var bin = Definition{
 	Type:        "bin",
 	Description: "Bank Identification Number",
 	DataType:    INTEGER,
+	Label:       "BIN",
 }
 
 var btc = Definition{
 	Type:        "btc",
 	Description: "Bitcoin Address",
 	DataType:    STR,
-	EntryPoint:  true,
+	Label:       "Bitcoin Address",
 }
 
 var ccNumber = Definition{
@@ -228,34 +233,42 @@ var ccNumber = Definition{
 	Description: "Credit Card Number",
 	DataType:    INTEGER,
 	Attributes:  []Definition{issuer},
-	EntryPoint:  true,
+	Label:       "Credit Card",
 }
 
 var issuer = Definition{
 	Type:        "issuer",
 	Description: "Issuer name",
 	DataType:    ISTR,
+	Label:       "Issuer",
+}
+
+var issuingCountry = Definition{
+	Type:        "issuing-country",
+	Description: "Issuing country name",
+	DataType:    COUNTRY,
+	Label:       "Issuing Country",
 }
 
 var cdHash = Definition{
 	Type:        "cdhash",
 	Description: "An Apple Code Directory Hash, identifying a code-signed Mach-O executable file",
 	DataType:    HEXADECIMAL,
-	EntryPoint:  true,
+	Label:       "Code Directory Hash",
 }
 
 var certificateFingerprint = Definition{
 	Type:        "certificate-fingerprint",
 	Description: "The fingerprint of a SSL/TLS certificate",
 	DataType:    HEXADECIMAL,
-	EntryPoint:  true,
+	Label:       "Certificate Fingerprint",
 }
 
 var chromeExtension = Definition{
 	Type:        "chrome-extension-id",
 	Description: "Chrome extension ID",
 	DataType:    STR,
-	EntryPoint:  true,
+	Label:       "Chrome Extension",
 }
 
 var subnet = Definition{
@@ -263,42 +276,42 @@ var subnet = Definition{
 	Description: "A public network segment",
 	DataType:    CIDR,
 	Attributes:  []Definition{country, city, latitude, longitude, asn, aso},
-	EntryPoint:  true,
+	Label:       "Public Subnet",
 }
 
 var cpe = Definition{
 	Type:        "cpe",
 	Description: "Common Platform Enumeration. Structured naming scheme for information technology systems, software, and packages",
 	DataType:    ISTR,
-	EntryPoint:  true,
+	Label:       "Platform Enumeration",
 }
 
 var cve = Definition{
 	Type:        "cve",
-	Description: "",
+	Description: "Common Vulnerability Enumerator",
 	DataType:    ISTR,
-	EntryPoint:  true,
+	Label:       "Vulnerability Enumeration",
 }
 
 var dash = Definition{
 	Type:        "dash",
 	Description: "Dash address",
 	DataType:    STR,
-	EntryPoint:  true,
+	Label:       "Dash",
 }
 
 var dkim = Definition{
 	Type:        "dkim",
 	Description: "DKIM public key",
 	DataType:    STR,
-	EntryPoint:  true,
+	Label:       "DKIM Public Key",
 }
 
 var dkimSignature = Definition{
 	Type:        "dkim-signature",
 	Description: "DKIM signature",
 	DataType:    STR,
-	EntryPoint:  true,
+	Label:       "DKIM Signature",
 }
 
 var domain = Definition{
@@ -306,236 +319,240 @@ var domain = Definition{
 	Description: "Internet domain",
 	DataType:    FQDN,
 	Attributes:  []Definition{whoIsRegistrant, whoIsRegistrar},
-	EntryPoint:  true,
+	Label:       "Domain",
 }
 
 var email = Definition{
 	Type:         "email",
 	Description:  "Email Message ID",
 	DataType:     STR,
-	Attributes:   []Definition{emailBody, emailDisplayName, emailHeader, emailAddress, emailSubject},
-	Associations: []Definition{file},
-	EntryPoint:   true,
-}
-
-var city = Definition{
-	Type:        "city",
-	Description: "City name",
-	DataType:    CITY,
-}
-
-var issuingCountry = Definition{
-	Type:        "issuing-country",
-	Description: "Issuing country name",
-	DataType:    COUNTRY,
+	Attributes:   []Definition{emailBody, emailDisplayName, emailAddress, emailSubject, emailThreadIndex, emailMimeBoundary, emailXMailer},
+	Associations: []Definition{file, emailHeader},
+	Label:        "Message ID",
 }
 
 var emailAddress = Definition{
 	Type:        "email-address",
 	Description: "Sender email address",
 	DataType:    EMAIL,
-	EntryPoint:  true,
+	Label:       "Email",
 }
 
 var emailBody = Definition{
 	Type:        "email-body",
 	Description: "Email body",
 	DataType:    ISTR,
+	Label:       "Email Body",
 }
 
 var emailDisplayName = Definition{
 	Type:        "email-display-name",
 	Description: "Sender display name",
 	DataType:    ISTR,
+	Label:       "Sender Display Name",
 }
 
 var emailHeader = Definition{
 	Type:        "email-header",
-	Description: "Email header (all headers)",
+	Description: "Email header",
 	DataType:    STR,
+	Label:       "Email Header",
 }
 
 var emailMimeBoundary = Definition{
 	Type:        "email-mime-boundary",
 	Description: "MIME boundaries are strings of 7-bit US-ASCII text that define the boundaries between message parts in a MIME message. MIME boundaries are declared in a Content-Type message header for any message that encapsulates more than one message part and in part headers for those parts that encapsulate nested parts.",
 	DataType:    STR,
+	Label:       "Email Mime Boundary",
 }
 
 var emailSubject = Definition{
 	Type:        "email-subject",
 	Description: "The subject of the email",
 	DataType:    ISTR,
+	Label:       "Email Subject",
 }
 
 var emailThreadIndex = Definition{
 	Type:        "email-thread-index",
 	Description: "The email thread index",
 	DataType:    BASE64,
-	EntryPoint:  true,
+	Label:       "Email Thread Index",
 }
 
 var emailXMailer = Definition{
 	Type:        "email-x-mailer",
 	Description: "Email x-mailer header",
 	DataType:    ISTR,
+	Label:       "Email X-Mailer",
 }
 
 var eppn = Definition{
 	Type:        "eppn",
 	Description: "The NetId of the person for the purposes of inter-institutional authentication. Should be stored in the form of user@univ.edu, where univ.edu is the name of the local security domain",
 	DataType:    EMAIL,
-	EntryPoint:  true,
+	Label:       "EPPN",
 }
 
 var facebookProfile = Definition{
 	Type:        "facebook-profile",
 	Description: "Facebook profile",
 	DataType:    URL,
-	EntryPoint:  true,
+	Label:       "Facebook Profile",
 }
 
 var ffn = Definition{
 	Type:        "ffn",
 	Description: "The frequent flyer number of a passanger",
 	DataType:    STR,
-	EntryPoint:  true,
+	Label:       "Frequent Flyer Number",
 }
 
 var filename = Definition{
 	Type:        "filename",
 	Description: "A filename or email attachment name",
 	DataType:    ISTR,
+	Label:       "File Name",
 }
 
 var sizeInBytes = Definition{
 	Type:        "size-in-bytes",
 	Description: "The size in bytes of an element",
 	DataType:    FLOAT,
+	Label:       "Size (Bytes)",
 }
 
 var filenamePattern = Definition{
 	Type:        "filename-pattern",
 	Description: "A pattern in the name of a file",
 	DataType:    REGEX,
+	Label:       "Filename Pattern",
 }
 
 var flight = Definition{
 	Type:        "flight",
 	Description: "A flight number",
 	DataType:    STR,
+	Label:       "Flight Number",
 }
 
 var gitHubOrganization = Definition{
 	Type:        "github-organization",
 	Description: "Github organization",
 	DataType:    URL,
-	EntryPoint:  true,
+	Label:       "GitHub Organization",
 }
 
 var gitHubRepository = Definition{
 	Type:        "github-repository",
 	Description: "Github repository",
 	DataType:    URL,
-	EntryPoint:  true,
+	Label:       "GitHub Repo",
 }
 
 var gitHubUser = Definition{
 	Type:        "github-user",
 	Description: "Github user",
 	DataType:    URL,
-	EntryPoint:  true,
+	Label:       "GitHub Profile",
 }
 
 var link = Definition{
 	Type:        "link",
 	Description: "External link for reference",
 	DataType:    URL,
+	Label:       "Reference",
 }
 
 var datetime = Definition{
 	Type:        "datetime",
 	Description: "Time with nanoseconds in the format 2006-01-02T15:04:05.999999999Z07:00",
 	DataType:    DATETIME,
+	Label:       "Date & Time",
 }
 
 var lastAnalysis = Definition{
 	Type:        "last-analysis",
 	Description: "Time of last analysis. Format 2006-01-02T15:04:05.999999999Z",
 	DataType:    DATETIME,
+	Label:       "Last Analysis",
 }
 
 var date = Definition{
 	Type:        "date",
 	Description: "Date in format 2006-01-02",
 	DataType:    DATE,
+	Label:       "Date",
 }
 
 var dateOfIssue = Definition{
 	Type:        "date-of-issue",
 	Description: "Date in format 2006-01-02",
 	DataType:    DATE,
+	Label:       "Date of Issue",
 }
 
 var expirationDate = Definition{
 	Type:        "expiration-date",
 	Description: "Date in format 2006-01-02",
 	DataType:    DATE,
+	Label:       "Due Date",
 }
 
 var malwareSample = Definition{
 	Type:        "malware-sample",
 	Description: "Malware Sample URL",
 	DataType:    URL,
-	Attributes:  []Definition{malware, file},
+	Label:       "Malware Sample",
 }
 
 var group = Definition{
 	Type:        "group",
-	Description: "Adversaries group",
+	Description: "Group of adversaries like APTnn or Anonymous",
 	DataType:    ADVERSARY,
-	EntryPoint:  true,
+	Label:       "Group",
 }
 
 var haSSHMD5 = Definition{
 	Type:        "hassh-md5",
-	Description: "Network fingerprinting standard which can be used to identify specific Client SSH implementations. The fingerprints can be easily stored, searched and shared in the form of an MD5 fingerprint",
+	Description: "Network fingerprinting standard which can be used to identify specific SSH client implementations. The fingerprints can be easily stored, searched and shared in the form of an MD5 fingerprint",
 	DataType:    MD5,
-	EntryPoint:  true,
+	Label:       "SSH Client Fingerprint",
 }
 
 var haSSHServerMD5 = Definition{
 	Type:        "hasshserver-md5",
 	Description: "Network fingerprinting standard which can be used to identify specific Server SSH implementations. The fingerprints can be easily stored, searched and shared in the form of an MD5 fingerprint",
 	DataType:    MD5,
-	EntryPoint:  true,
+	Label:       "SSH Server Fingerprint",
 }
 
 var hexa = Definition{
 	Type:        "hex",
 	Description: "A value in hexadecimal",
 	DataType:    HEXADECIMAL,
-	EntryPoint:  true,
+	Label:       "Hexadecimal",
 }
 
 var base64d = Definition{
 	Type:        "base64",
 	Description: "A value in BASE64 format",
 	DataType:    BASE64,
-	EntryPoint:  true,
+	Label:       "Base64",
 }
 
 var hostname = Definition{
 	Type:        "hostname",
 	Description: "A full host/dnsname of an attacker",
 	DataType:    FQDN,
-	EntryPoint:  true,
+	Label:       "Host",
 }
 
 var iban = Definition{
 	Type:        "iban",
 	Description: "International Bank Account Number",
 	DataType:    ISTR,
-	EntryPoint:  true,
+	Label:       "IBAN",
 }
 
 var idNumber = Definition{
@@ -543,7 +560,7 @@ var idNumber = Definition{
 	Description: "It can be an ID card, residence permit, etc.",
 	DataType:    STR,
 	Attributes:  []Definition{issuer, dateOfIssue, expirationDate},
-	EntryPoint:  true,
+	Label:       "Identity Number",
 }
 
 var ipAddr = Definition{
@@ -551,69 +568,70 @@ var ipAddr = Definition{
 	Description: "IP Address",
 	DataType:    IP,
 	Attributes:  []Definition{subnet},
-	EntryPoint:  true,
+	Label:       "IP",
 }
 
 var ja3Fingerprint = Definition{
 	Type:        "ja3-fingerprint-md5",
 	Description: "JA3 is a method for creating SSL/TLS client fingerprints that should be easy to produce on any platform and can be easily shared for threat intelligence",
 	DataType:    MD5,
-	EntryPoint:  true,
+	Label:       "JA3 Fingerprint",
 }
 
 var jabberID = Definition{
 	Type:        "jabber-id",
 	Description: "Jabber ID",
 	DataType:    EMAIL,
-	EntryPoint:  true,
+	Label:       "Jabber ID",
 }
 
 var jarmFingerprint = Definition{
 	Type:        "jarm-fingerprint",
 	Description: "JARM is a method for creating SSL/TLS server fingerprints",
 	DataType:    HEXADECIMAL,
-	EntryPoint:  true,
+	Label:       "JARM Fingerprint",
 }
 
 var macAddr = Definition{
 	Type:        "mac-address",
 	Description: "Network interface hardware address",
 	DataType:    MAC,
-	EntryPoint:  true,
+	Label:       "Hardware Address",
 }
 
 var malwareFamily = Definition{
 	Type:        "malware-family",
 	Description: "Malware family",
 	DataType:    ISTR,
-	EntryPoint:  true,
+	Label:       "Malware Family",
 }
 
 var malwareType = Definition{
 	Type:        "malware-type",
 	Description: "Malware type",
 	DataType:    ISTR,
-	EntryPoint:  true,
+	Label:       "Malware Type",
 }
 
 var hashMD5 = Definition{
 	Type:        "md5",
 	Description: "Hash MD5",
 	DataType:    MD5,
-	EntryPoint:  true,
+	Label:       "MD5",
 }
 
 var mimeType = Definition{
 	Type:        "mime-type",
 	Description: "A media type (also MIME type and content type) is a two-part identifier",
 	DataType:    MIME,
+	Label:       "Media Type",
 }
 
 var mobileAppID = Definition{
 	Type:        "mobile-app-id",
 	Description: "The ID of a mobile application",
 	DataType:    STR,
-	EntryPoint:  true,
+	Label:       "Mobile App ID",
 }
 
 var passport = Definition{
@@ -621,60 +639,63 @@ var passport = Definition{
 	Description: "Passport number",
 	DataType:    STR,
 	Attributes:  []Definition{issuingCountry, issuer, dateOfIssue, expirationDate},
-	EntryPoint:  true,
+	Label:       "Passport Number",
 }
 
 var pathD = Definition{
 	Type:        "path",
 	Description: "Path to a file, folder or process, also a HTTP request path",
 	DataType:    PATH,
-	EntryPoint:  true,
+	Label:       "Path",
 }
 
 var patternInFile = Definition{
 	Type:        "pattern-in-file",
 	Description: "Pattern inside a file",
 	DataType:    REGEX,
+	Label:       "Pattern in File",
 }
 
 var patternInMemory = Definition{
 	Type:        "pattern-in-memory",
 	Description: "Pattern in memory",
 	DataType:    REGEX,
+	Label:       "Pattern in Memory",
 }
 
 var patternInTraffic = Definition{
 	Type:        "pattern-in-traffic",
 	Description: "Pattern in traffic",
 	DataType:    REGEX,
+	Label:       "Pattern in Traffic",
 }
 
 var pgpPrivateKey = Definition{
 	Type:        "pgp-private-key",
 	Description: "PGP private key",
 	DataType:    STR,
-	EntryPoint:  true,
+	Label:       "PGP Private Key",
 }
 
 var pgpPublicKey = Definition{
 	Type:        "pgp-public-key",
 	Description: "PGP public key",
 	DataType:    STR,
-	EntryPoint:  true,
+	Label:       "PGP Public Key",
 }
 
 var phone = Definition{
 	Type:        "phone",
 	Description: "Phone number",
 	DataType:    PHONE,
-	EntryPoint:  true,
+	Label:       "Phone Number",
 }
 
 var pnr = Definition{
 	Type:        "pnr",
 	Description: "The Passenger Name Record Locator is a key under which the reservation for a trip is stored in the system. The PNR contains, among other data, the name, flight segments and address of the passenger. It is defined by a combination of five or six letters and numbers",
 	DataType:    STR,
-	EntryPoint:  true,
+	Label:       "Reservation Number",
 }
 
 var process = Definition{
@@ -682,235 +703,238 @@ var process = Definition{
 	Description: "A running process",
 	DataType:    ISTR,
 	Attributes:  []Definition{processState},
-	EntryPoint:  true,
+	Label:       "Process",
 }
 
 var processState = Definition{
 	Type:        "process-state",
 	Description: "State of a process",
 	DataType:    ISTR,
+	Label:       "Process State",
 }
 
 var pRtn = Definition{
 	Type:        "prtn",
 	Description: "Premium-rate telephone number",
 	DataType:    ISTR,
-	EntryPoint:  true,
+	Label:       "PRTN",
 }
 
 var redress = Definition{
 	Type:        "redress-number",
 	Description: "The Redress Control Number is the record identifier for people who apply for redress through the DHS Travel Redress Inquiry Program (DHS TRIP). DHS TRIP is for travelers who have been repeatedly identified for additional screening and who want to file an inquiry to have erroneous information corrected in DHS systems",
 	DataType:    STR,
-	EntryPoint:  true,
+	Label:       "Redress Control Number",
 }
 
 var regKey = Definition{
 	Type:        "regkey",
 	Description: "Registry key",
 	DataType:    ISTR,
-	EntryPoint:  true,
+	Label:       "Registry Key",
 }
 
 var hashSHA1 = Definition{
 	Type:        "sha1",
 	Description: "Hash SHA1",
 	DataType:    SHA1,
-	EntryPoint:  true,
+	Label:       "SHA-1",
 }
 
 var hashSHA224 = Definition{
 	Type:        "sha224",
-	Description: "Hash SHA224",
+	Description: "Hash SHA-224",
 	DataType:    SHA224,
-	EntryPoint:  true,
+	Label:       "SHA-224",
 }
 
 var hashSHA256 = Definition{
 	Type:        "sha256",
-	Description: "Hash SHA256",
+	Description: "Hash SHA-256",
 	DataType:    SHA256,
-	EntryPoint:  true,
+	Label:       "SHA-256",
 }
 
 var hashSHA384 = Definition{
 	Type:        "sha384",
-	Description: "Hash SHA384",
+	Description: "Hash SHA-384",
 	DataType:    SHA384,
-	EntryPoint:  true,
+	Label:       "SHA-384",
 }
 
 var hashSHA512 = Definition{
 	Type:        "sha512",
-	Description: "Hash SHA512",
+	Description: "Hash SHA-512",
 	DataType:    SHA512,
-	EntryPoint:  true,
+	Label:       "SHA-512",
 }
 
 var hashSHA3224 = Definition{
 	Type:        "sha3-224",
 	Description: "Hash SHA3-224",
 	DataType:    SHA3_224,
-	EntryPoint:  true,
+	Label:       "SHA3-224",
 }
 
 var hashSHA3256 = Definition{
 	Type:        "sha3-256",
 	Description: "Hash SHA3-256",
 	DataType:    SHA3_256,
-	EntryPoint:  true,
+	Label:       "SHA3-256",
 }
 
 var hashSHA3384 = Definition{
 	Type:        "sha3-384",
 	Description: "Hash SHA3-384",
 	DataType:    SHA3_384,
-	EntryPoint:  true,
+	Label:       "SHA3-384",
 }
 
 var hashSHA3512 = Definition{
 	Type:        "sha3-512",
 	Description: "Hash SHA3-512",
 	DataType:    SHA3_512,
-	EntryPoint:  true,
+	Label:       "SHA3-512",
 }
 
 var hashSHA512224 = Definition{
 	Type:        "sha512-224",
 	Description: "Hash SHA512-224",
 	DataType:    SHA512_224,
-	EntryPoint:  true,
+	Label:       "SHA512-224",
 }
 
 var hashSHA512256 = Definition{
 	Type:        "sha512-256",
 	Description: "Hash SHA512-256",
 	DataType:    SHA512_256,
-	EntryPoint:  true,
+	Label:       "SHA512-256",
 }
 
 var sshFingerprint = Definition{
 	Type:        "ssh-fingerprint",
 	Description: "A fingerprint of SSH key material",
 	DataType:    STR,
-	EntryPoint:  true,
+	Label:       "SSH Fingerprint",
 }
 
 var ssr = Definition{
 	Type:        "ssr",
 	Description: "A Special Service Request is a function to an airline to provide a particular facility for A Passenger or passengers",
 	DataType:    STR,
+	Label:       "Special Service Request",
 }
 
 var category = Definition{
 	Type:        "category",
 	Description: "A category",
 	DataType:    ISTR,
+	Label:       "Category",
 }
 
 var threat = Definition{
 	Type:        "threat",
-	Description: "A cybersecurity threat",
+	Description: "A threat",
 	DataType:    ISTR,
-	EntryPoint:  true,
+	Label:       "Threat",
 }
 
 var tikTokProfile = Definition{
 	Type:        "tiktok-profile",
 	Description: "TikTok user profile",
 	DataType:    URL,
-	EntryPoint:  true,
+	Label:       "TikTok Profile",
 }
 
 var twitterProfile = Definition{
 	Type:        "twitter-profile",
-	Description: "A Twitter user profile",
+	Description: "A Twitter/X user profile",
 	DataType:    URL,
-	EntryPoint:  true,
+	Label:       "Twitter/X Profile",
 }
 
 var uri = Definition{
 	Type:        "url",
 	Description: "URL",
 	DataType:    URL,
-	EntryPoint:  true,
+	Label:       "URL",
 }
 
 var username = Definition{
 	Type:        "username",
 	Description: "Username",
 	DataType:    ISTR,
-	EntryPoint:  true,
+	Label:       "Username",
 }
 
 var visa = Definition{
 	Type:        "visa",
-	Description: "Visa number",
+	Description: "Traveler visa number",
 	DataType:    STR,
-	EntryPoint:  true,
+	Label:       "Visa Number",
 }
 
 var whoIsRegistrant = Definition{
 	Type:        "whois-registrant",
 	Description: "Who is registrant",
 	DataType:    ISTR,
-	EntryPoint:  true,
+	Label:       "Registrant",
 }
 
 var whoIsRegistrar = Definition{
 	Type:        "whois-registrar",
 	Description: "whois-registrar",
 	DataType:    ISTR,
-	EntryPoint:  true,
+	Label:       "Registrar",
 }
 
 var windowsScheduledTask = Definition{
 	Type:        "windows-scheduled-task",
 	Description: "A Windows scheduled task",
 	DataType:    ISTR,
-	EntryPoint:  true,
+	Label:       "Scheduled Task",
 }
 
 var windowsServiceDisplayName = Definition{
 	Type:        "windows-service-displayname",
 	Description: "A windows service’s displayname, not to be confused with the windows-service-name. This is the name that applications will generally display as the service’s name in applications",
 	DataType:    ISTR,
-	EntryPoint:  true,
+	Label:       "Service Display Name",
 }
 
 var windowsServiceName = Definition{
 	Type:        "windows-service-name",
 	Description: "A windows service name. This is the name used internally by windows. Not to be confused with the windows-service-displayname",
 	DataType:    ISTR,
-	EntryPoint:  true,
+	Label:       "Service Name",
 }
 
 var xmr = Definition{
 	Type:        "xmr",
 	Description: "Monero address",
 	DataType:    STR,
-	EntryPoint:  true,
+	Label:       "Monero Address",
 }
 
 var x509MD5 = Definition{
 	Type:        "x509-fingerprint-md5",
-	Description: "X509 fingerprint in MD5",
+	Description: "x509 fingerprint in MD5",
 	DataType:    MD5,
-	EntryPoint:  true,
+	Label:       "x509 Fingerprint (MD5)",
 }
 
 var x509SHA1 = Definition{
 	Type:        "x509-fingerprint-sha1",
-	Description: "X509 fingerprint in SHA1",
+	Description: "x509 fingerprint in SHA-1",
 	DataType:    SHA1,
-	EntryPoint:  true,
+	Label:       "x509 Fingerprint (SHA-1)",
 }
 
 var x509SHA256 = Definition{
 	Type:        "x509-fingerprint-sha256",
-	Description: "X509 fingerprint in SHA256",
+	Description: "x509 fingerprint in SHA-256",
 	DataType:    SHA256,
-	EntryPoint:  true,
+	Label:       "x509 Fingerprint (SHA-256)",
 }
 
 var breach = Definition{
@@ -918,55 +942,64 @@ var breach = Definition{
 	Description: "Security breach that resulted in a leak of PII or SPII",
 	DataType:    UUID,
 	Attributes:  []Definition{domain, link, breachDate, breachCount, breachDescription},
+	Label:       "Breach",
 }
 
 var breachDate = Definition{
 	Type:        "breach-date",
 	Description: "Day the breach occurred",
 	DataType:    DATE,
+	Label:       "Breach Date",
 }
 
 var breachCount = Definition{
 	Type:        "breach-count",
 	Description: "Number of items leaked in the breach",
 	DataType:    INTEGER,
+	Label:       "Breach Count",
 }
 
 var breachDescription = Definition{
 	Type:        "breach-description",
 	Description: "Detailed description of the breach",
 	DataType:    STR,
+	Label:       "Breach Description",
 }
 
 var postalAddress = Definition{
 	Type:        "postal-address",
 	Description: "Postal address",
 	DataType:    ISTR,
+	Label:       "Postal Address",
 }
 
 var zipCode = Definition{
 	Type:        "zip-code",
 	Description: "Zip code",
 	DataType:    STR,
+	Label:       "Zip Code",
 }
 
 var port = Definition{
 	Type:        "port",
 	Description: "TCP/UDP Port",
 	DataType:    INTEGER,
+	Label:       "Port",
 }
 
 var os = Definition{
-	Type: "os",
+	Type:        "os",
 	Description: "Operating System",
-	DataType: ISTR,
+	DataType:    ISTR,
+	Label:       "Operating System",
 }
 
 var command = Definition{
-	Type: "command",
+	Type:        "command",
 	Description: "A cli command",
-	DataType: STR,
-	Attributes: []Definition{os},
+	DataType:    STR,
+	Attributes:  []Definition{os},
+	Label:       "Command",
 }
 
 var Definitions = []Definition{
@@ -989,8 +1022,6 @@ var Definitions = []Definition{
 	malwareFamily,
 	malwareType,
 	malwareSample,
-	object,
-	descriptor,
 	abaRtn,
 	latitude,
 	longitude,
