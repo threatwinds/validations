@@ -10,6 +10,9 @@ func ValidateInteger(value interface{}) (int64, string, error) {
 	if t.Kind() == reflect.Float64 {
 		value = int64(value.(float64))
 	}
+	if t.Kind() == reflect.Int {
+		value = int64(value.(int))
+	}
 	v, ok := value.(int64)
 	if !ok {
 		return 0, "", fmt.Errorf("value is not integer: %v", value)
