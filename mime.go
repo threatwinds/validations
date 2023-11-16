@@ -13,7 +13,7 @@ func ValidateMime(value interface{}) (string, string, error) {
 
 	v = strings.ToLower(v)
 
-	e := ValidateRegEx(`^([a-z]+)[/]([a-z]+[a-z+-.][a-z]+)+$`, v)
+	e := ValidateRegEx(`^([a-z]+)[/]([a-z0-9]+[a-z0-9+-.][a-z0-9]+)+$`, v)
 	if e != nil {
 		return "", "", e
 	}

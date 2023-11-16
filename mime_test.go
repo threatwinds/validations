@@ -34,6 +34,11 @@ func TestValidateMime(t *testing.T) {
 		},
 		{
 			name:     "valid mime type",
+			input:    "audio/3mu",
+			expected: "audio/3mu",
+		},
+		{
+			name:     "valid mime type",
 			input:    "video/mp4",
 			expected: "video/mp4",
 		},
@@ -51,22 +56,22 @@ func TestValidateMime(t *testing.T) {
 		},
 		{
 			name:     "invalid mime type",
-			input:    "text",
+			input:    "application/json-",
 			expected: "",
 		},
 		{
 			name:     "invalid mime type",
-			input:    "image",
+			input:    "te-xt/text",
 			expected: "",
 		},
 		{
 			name:     "invalid mime type",
-			input:    "audio",
+			input:    "image/png--png",
 			expected: "",
 		},
 		{
 			name:     "invalid mime type",
-			input:    "video",
+			input:    "audio/-mp3",
 			expected: "",
 		},
 	}
