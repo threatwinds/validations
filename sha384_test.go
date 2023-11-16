@@ -58,7 +58,7 @@ func TestValidateSHA384(t *testing.T) {
 
 	for _, tc := range validCases {
 		t.Run(tc.name, func(t *testing.T) {
-			actual, _, err := validations.ValidateSHA3384(tc.input)
+			actual, _, err := validations.ValidateSHA384(tc.input)
 			if err != nil {
 				t.Fatalf("unexpected error: %v", err)
 			}
@@ -70,7 +70,7 @@ func TestValidateSHA384(t *testing.T) {
 
 	for _, tc := range invalidCases {
 		t.Run(tc.name, func(t *testing.T) {
-			_, _, err := validations.ValidateSHA3384(tc.input)
+			_, _, err := validations.ValidateSHA384(tc.input)
 			if err == nil {
 				t.Fatalf("expected error, but got nil")
 			}
