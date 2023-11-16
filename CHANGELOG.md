@@ -1,0 +1,31 @@
+# FEATURES
+## Validations for:
+- Adversary
+- Base64
+- Boolean
+- CIDR
+- City (Partial)
+- Country (Partial)
+- Date
+- Email
+- Float
+- FQDN
+- Hexadecimal
+- Integer
+- IP
+- MAC
+- MD5
+- Mime type
+- Object
+- Path
+- Phone
+- Regex
+- SHA1
+- SHA3 (Whole family)
+- SHA-224
+- SHA-256
+- SHA-384
+- SHA-512 (Whole family)
+- String
+- URL
+- UUID
