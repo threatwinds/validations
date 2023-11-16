@@ -5,6 +5,8 @@ import (
 	"reflect"
 )
 
+// ValidateInteger validates if a value is an integer and returns its int64 representation,
+// its SHA3-256 hash and an error if the value is not an integer.
 func ValidateInteger(value interface{}) (int64, string, error) {
 	t := reflect.TypeOf(value)
 	if t.Kind() == reflect.Float64 {

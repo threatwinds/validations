@@ -5,6 +5,7 @@ import (
 	"strings"
 )
 
+// ValidateMime validates if a given string is a valid MIME type and returns the validated string, its SHA3-256 hash and an error if any.
 func ValidateMime(value interface{}) (string, string, error) {
 	v, ok := value.(string)
 	if !ok {

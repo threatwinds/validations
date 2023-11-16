@@ -6,6 +6,8 @@ import (
 	"strings"
 )
 
+// ValidateHexadecimal validates if the given value is a valid hexadecimal string.
+// It returns the hexadecimal string in lowercase format, its SHA3-256 hash and an error if any.
 func ValidateHexadecimal(value interface{}) (string, string, error) {
 	v, ok := value.(string)
 	if !ok {

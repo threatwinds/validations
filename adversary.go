@@ -4,6 +4,11 @@ import (
 	"fmt"
 )
 
+// ValidateAdversary validates if the given value is a valid adversary.
+// It checks if the value is a valid URL, UUID, email, IP, phone or FQDN.
+// If any of these validations pass, it returns an error.
+// If the value is not a string, it returns an error.
+// Otherwise, it returns the value and its SHA3-256 hash.
 func ValidateAdversary(value interface{}) (string, string, error) {
 	_, _, e1 := ValidateURL(value)
 

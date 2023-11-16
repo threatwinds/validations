@@ -2,6 +2,8 @@ package validations
 
 import "fmt"
 
+// ValidatePhone validates a phone number and returns the validated phone number and its SHA3-256 hash.
+// If the value is not a string, it returns an error.
 func ValidatePhone(value interface{}) (string, string, error) {
 	v, ok := value.(string)
 	if !ok {

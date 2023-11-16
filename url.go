@@ -6,6 +6,8 @@ import (
 	"strings"
 )
 
+// ValidateURL validates a given URL string and returns the URL in lowercase and its SHA3-256 hash.
+// If the value is not a string, it returns an error.
 func ValidateURL(value interface{}) (string, string, error) {
 	v, ok := value.(string)
 	if !ok {

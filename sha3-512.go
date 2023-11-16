@@ -5,6 +5,7 @@ import (
 	"strings"
 )
 
+// ValidateSHA3512 validates if a given string is a valid SHA3-512 hash and returns the hash in lowercase and its SHA3-256 hash.
 func ValidateSHA3512(value interface{}) (string, string, error) {
 	v, ok := value.(string)
 	if !ok {

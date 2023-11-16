@@ -5,6 +5,7 @@ import (
 	"time"
 )
 
+// ValidateDate validates a date string in the format "2006-01-02" and returns the formatted date string and its SHA3-256 hash.
 func ValidateDate(value interface{}) (string, string, error) {
 	v, ok := value.(string)
 	if !ok {
@@ -20,6 +21,7 @@ func ValidateDate(value interface{}) (string, string, error) {
 	return ftime, GenerateSHA3256(ftime), nil
 }
 
+// ValidateDatetime validates a datetime string in the RFC3339Nano format and returns the formatted datetime string and its SHA3-256 hash.
 func ValidateDatetime(value interface{}) (string, string, error) {
 	v, ok := value.(string)
 	if !ok {

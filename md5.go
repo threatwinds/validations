@@ -5,6 +5,8 @@ import (
 	"strings"
 )
 
+// ValidateMD5 validates if a given string is a valid MD5 hash.
+// It receives a value of type interface{} and returns the validated string, its SHA3-256 hash and an error.
 func ValidateMD5(value interface{}) (string, string, error) {
 	v, ok := value.(string)
 	if !ok {

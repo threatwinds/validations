@@ -5,6 +5,8 @@ import (
 	"strings"
 )
 
+// ValidateMAC validates if a given string is a valid MAC address and returns the MAC address in uppercase
+// and its SHA3-256 hash.
 func ValidateMAC(value interface{}) (string, string, error) {
 	v, ok := value.(string)
 	if !ok {

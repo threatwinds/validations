@@ -5,6 +5,8 @@ import (
 	"strings"
 )
 
+// ValidateString validates a string value and returns the original value, its SHA3-256 hash and an error.
+// If the insensitive flag is set to true, the value is converted to lowercase before hashing.
 func ValidateString(value interface{}, insensitive bool) (string, string, error) {
 	v, ok := value.(string)
 	if !ok {

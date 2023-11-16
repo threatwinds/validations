@@ -5,6 +5,8 @@ import (
 	"strings"
 )
 
+// ValidateFQDN validates a fully qualified domain name (FQDN) string.
+// It returns the validated FQDN, its SHA3-256 hash, and an error if the validation fails.
 func ValidateFQDN(value interface{}) (string, string, error) {
 	v, ok := value.(string)
 	if !ok {

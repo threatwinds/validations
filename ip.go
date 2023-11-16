@@ -6,6 +6,8 @@ import (
 	"strings"
 )
 
+// ValidateIP validates if the given IP address is valid and not private, multicast, loopback, or unspecified.
+// It returns the validated IP address and its SHA3-256 hash.
 func ValidateIP(value interface{}) (string, string, error) {
 	v, ok := value.(string)
 	if !ok {

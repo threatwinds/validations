@@ -6,6 +6,8 @@ import (
 	"strings"
 )
 
+// ValidateEmail validates if a given string is a valid email address.
+// It returns the email address, its SHA3-256 hash and an error if any.
 func ValidateEmail(value interface{}) (string, string, error) {
 	v, ok := value.(string)
 	if !ok {

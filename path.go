@@ -5,6 +5,8 @@ import (
 	"strings"
 )
 
+// ValidatePath validates if the given value is a valid path and returns the path in lowercase and its SHA3-256 hash.
+// If the value is not a string or contains "://" it returns an error.
 func ValidatePath(value interface{}) (string, string, error) {
 	v, ok := value.(string)
 	if !ok {

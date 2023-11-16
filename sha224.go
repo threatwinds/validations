@@ -5,6 +5,7 @@ import (
 	"strings"
 )
 
+// ValidateSHA224 validates if a given string is a valid SHA-224 hash and returns the hash in lowercase and its SHA3-256 hash.
 func ValidateSHA224(value interface{}) (string, string, error) {
 	v, ok := value.(string)
 	if !ok {
