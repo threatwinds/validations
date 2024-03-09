@@ -80,6 +80,8 @@ func ValidateValue(value interface{}, t string) (interface{}, string, error) {
 				return ValidateAdversary(value)
 			case REGEX:
 				return ValidateRegexComp(value)
+			case PORT:
+				return ValidatePort(value)
 			default:
 				return nil, "", fmt.Errorf("unknown validator for value: %v", value)
 			}

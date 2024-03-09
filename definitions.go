@@ -37,6 +37,7 @@ const (
 	OBJECT      = "UUID|MD5|SHA3-256"
 	ADVERSARY   = "Adversary"
 	REGEX       = "Regex"
+	PORT		= "Port"
 )
 
 type Definition struct {
@@ -983,7 +984,7 @@ var zipCode = Definition{
 var port = Definition{
 	Type:        "port",
 	Description: "TCP/UDP Port",
-	DataType:    INTEGER,
+	DataType:    ISTR,
 	Label:       "Port",
 }
 
