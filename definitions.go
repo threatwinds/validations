@@ -37,7 +37,7 @@ const (
 	OBJECT      = "UUID|MD5|SHA3-256"
 	ADVERSARY   = "Adversary"
 	REGEX       = "Regex"
-	PORT		= "Port"
+	PORT        = "Port"
 )
 
 type Definition struct {
@@ -822,7 +822,7 @@ var sshFingerprint = Definition{
 var sshBanner = Definition{
 	Type:        "ssh-banner",
 	Description: "SSH Hello Banner",
-	DataType:    HEXADECIMAL,
+	DataType:    STR,
 	Label:       "SSH Banner",
 }
 
