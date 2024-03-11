@@ -514,20 +514,6 @@ var group = Definition{
 	Label:       "Group",
 }
 
-var haSSHMD5 = Definition{
-	Type:        "hassh-md5",
-	Description: "Network fingerprinting standard which can be used to identify specific SSH client implementations. The fingerprints can be easily stored, searched and shared in the form of an MD5 fingerprint",
-	DataType:    MD5,
-	Label:       "SSH Client Fingerprint",
-}
-
-var haSSHServerMD5 = Definition{
-	Type:        "hasshserver-md5",
-	Description: "Network fingerprinting standard which can be used to identify specific Server SSH implementations. The fingerprints can be easily stored, searched and shared in the form of an MD5 fingerprint",
-	DataType:    MD5,
-	Label:       "SSH Server Fingerprint",
-}
-
 var hexa = Definition{
 	Type:        "hex",
 	Description: "A value in hexadecimal",
@@ -573,7 +559,7 @@ var ipAddr = Definition{
 }
 
 var ja3Fingerprint = Definition{
-	Type:        "ja3-fingerprint-md5",
+	Type:        "ja3-fingerprint",
 	Description: "JA3 is a method for creating SSL/TLS client fingerprints that should be easy to produce on any platform and can be easily shared for threat intelligence",
 	DataType:    MD5,
 	Label:       "JA3 Fingerprint",
@@ -815,7 +801,7 @@ var hashSHA512256 = Definition{
 var sshFingerprint = Definition{
 	Type:        "ssh-fingerprint",
 	Description: "A fingerprint of SSH key material",
-	DataType:    HEXADECIMAL,
+	DataType:    STR,
 	Label:       "SSH Fingerprint",
 }
 
@@ -924,27 +910,6 @@ var xmr = Definition{
 	Label:       "Monero Address",
 }
 
-var x509MD5 = Definition{
-	Type:        "x509-fingerprint-md5",
-	Description: "x509 fingerprint in MD5",
-	DataType:    MD5,
-	Label:       "x509 Fingerprint (MD5)",
-}
-
-var x509SHA1 = Definition{
-	Type:        "x509-fingerprint-sha1",
-	Description: "x509 fingerprint in SHA-1",
-	DataType:    SHA1,
-	Label:       "x509 Fingerprint (SHA-1)",
-}
-
-var x509SHA256 = Definition{
-	Type:        "x509-fingerprint-sha256",
-	Description: "x509 fingerprint in SHA-256",
-	DataType:    SHA256,
-	Label:       "x509 Fingerprint (SHA-256)",
-}
-
 var breach = Definition{
 	Type:        "breach",
 	Description: "Security breach that resulted in a leak of PII or SPII",
@@ -991,7 +956,7 @@ var zipCode = Definition{
 var port = Definition{
 	Type:        "port",
 	Description: "TCP/UDP Port",
-	DataType:    ISTR,
+	DataType:    PORT,
 	Label:       "Port",
 }
 
@@ -1084,8 +1049,6 @@ var Definitions = []Definition{
 	dateOfIssue,
 	expirationDate,
 	group,
-	haSSHMD5,
-	haSSHServerMD5,
 	hexa,
 	base64d,
 	hostname,
@@ -1140,8 +1103,5 @@ var Definitions = []Definition{
 	windowsServiceDisplayName,
 	windowsServiceName,
 	xmr,
-	x509MD5,
-	x509SHA1,
-	x509SHA256,
 	payload,
 }
