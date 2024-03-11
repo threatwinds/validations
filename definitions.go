@@ -815,8 +815,15 @@ var hashSHA512256 = Definition{
 var sshFingerprint = Definition{
 	Type:        "ssh-fingerprint",
 	Description: "A fingerprint of SSH key material",
-	DataType:    STR,
+	DataType:    HEXADECIMAL,
 	Label:       "SSH Fingerprint",
+}
+
+var sshBanner = Definition{
+	Type:        "ssh-banner",
+	Description: "SSH Hello Banner",
+	DataType:    HEXADECIMAL,
+	Label:       "SSH Banner",
 }
 
 var ssr = Definition{
@@ -1088,6 +1095,7 @@ var Definitions = []Definition{
 	ja3Fingerprint,
 	jabberID,
 	jarmFingerprint,
+	sshBanner,
 	macAddr,
 	hashMD5,
 	mimeType,
