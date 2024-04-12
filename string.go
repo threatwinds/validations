@@ -15,10 +15,6 @@ func ValidateString(value interface{}, insensitive bool) (string, string, error)
 		return "", "", fmt.Errorf("value is not string: %v", value)
 	}
 
-	if v == "" {
-		return "", "", fmt.Errorf("value cannot be empty")
-	}
-
 	replacement, _ := utf8.DecodeRuneInString(" ")
 	allowed := "\r\n \r \n"
 	v = strings.Map(func(r rune) rune {
@@ -37,6 +33,10 @@ func ValidateString(value interface{}, insensitive bool) (string, string, error)
 
 	if !utf8.ValidString(v) {
 		return "", "", fmt.Errorf("value is not an UTF-8 valid string")
+	}
+
+	if strings.TrimSpace(v) == "" {
+		return "", "", fmt.Errorf("value cannot be empty")
 	}
 
 	if insensitive {
