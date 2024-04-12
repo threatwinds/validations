@@ -54,7 +54,7 @@ type Definition struct {
 
 var file = Definition{
 	Type:         "file",
-	Description:  "Object identifying a file, the value can be a UUID or a SHA3-256 or MD5 checksum",
+	Description:  "An object identifying a file, the value can be a UUID or a SHA3-256 or MD5 checksum",
 	DataType:     OBJECT,
 	Attributes:   []Definition{fileData, hashSHA1, hashMD5, hashSHA256, hashSHA3256},
 	Associations: []Definition{filename, filenamePattern},
@@ -66,7 +66,7 @@ var file = Definition{
 
 var payload = Definition{
 	Type:        "payload",
-	Description: "SHA3-256 of a message sent in a network packet",
+	Description: "A SHA3-256 of a message sent in a network packet",
 	DataType:    SHA3_256,
 	Attributes:  []Definition{hashSHA1, hashMD5, hashSHA256, hashSHA3256},
 	Label:       "Payload",
@@ -74,7 +74,7 @@ var payload = Definition{
 
 var fileData = Definition{
 	Type:        "file-data",
-	Description: "File or attachment URL",
+	Description: "A file or attachment URL",
 	DataType:    URL,
 	Attributes:  []Definition{},
 	Label:       "Download",
@@ -82,28 +82,28 @@ var fileData = Definition{
 
 var adversary = Definition{
 	Type:        "adversary",
-	Description: "Object identifying a threat actor",
+	Description: "An object identifying a threat actor",
 	DataType:    ADVERSARY,
 	Label:       "Adversary",
 }
 
 var aso = Definition{
 	Type:        "aso",
-	Description: "Autonomous System Organization",
+	Description: "An autonomous System Organization",
 	DataType:    ISTR,
 	Label:       "ASO",
 }
 
 var asn = Definition{
 	Type:        "asn",
-	Description: "Autonomous System Organization Number",
+	Description: "An autonomous System Organization Number",
 	DataType:    INTEGER,
 	Label:       "ASN",
 }
 
 var malware = Definition{
 	Type:        "malware",
-	Description: "Malware",
+	Description: "A software intentionally designed to harm a computer, server, network, or user",
 	DataType:    ISTR,
 	Attributes: []Definition{
 		malwareFamily,
@@ -116,42 +116,42 @@ var malware = Definition{
 
 var abaRtn = Definition{
 	Type:        "aba-rtn",
-	Description: "ABA routing transit number",
+	Description: "An ABA routing transit number",
 	DataType:    INTEGER,
 	Label:       "ABA RTN",
 }
 
 var latitude = Definition{
 	Type:        "latitude",
-	Description: "GPS latitude",
+	Description: "A GPS latitude",
 	DataType:    FLOAT,
 	Label:       "Latitude",
 }
 
 var longitude = Definition{
 	Type:        "longitude",
-	Description: "GPS longitude",
+	Description: "A GPS longitude",
 	DataType:    FLOAT,
 	Label:       "Longitude",
 }
 
 var country = Definition{
 	Type:        "country",
-	Description: "Country name",
+	Description: "A country name",
 	DataType:    COUNTRY,
 	Label:       "Country",
 }
 
 var city = Definition{
 	Type:        "city",
-	Description: "City name",
+	Description: "A city name",
 	DataType:    CITY,
 	Label:       "City",
 }
 
 var cookie = Definition{
 	Type:         "cookie",
-	Description:  "HTTP cookie as often stored on the user web client. This can include authentication cookie or session cookie",
+	Description:  "An HTTP cookie as often stored on the user web client. This can include authentication cookie or session cookie",
 	DataType:     STR,
 	Associations: []Definition{value},
 	Label:        "Cookie",
@@ -159,28 +159,28 @@ var cookie = Definition{
 
 var text = Definition{
 	Type:        "text",
-	Description: "Any case insensitive text value",
+	Description: "A case insensitive text value",
 	DataType:    ISTR,
 	Label:       "Text",
 }
 
 var value = Definition{
 	Type:        "value",
-	Description: "Any case sensitive text value",
+	Description: "A case sensitive text value",
 	DataType:    STR,
 	Label:       "Text",
 }
 
 var password = Definition{
 	Type:        "password",
-	Description: "Password",
+	Description: "A password",
 	DataType:    STR,
 	Label:       "Password",
 }
 
 var airport = Definition{
 	Type:        "airport-name",
-	Description: "The airport name",
+	Description: "An airport name",
 	DataType:    ISTR,
 	Attributes:  []Definition{country, city},
 	Label:       "Airport",
@@ -188,21 +188,21 @@ var airport = Definition{
 
 var profilePhoto = Definition{
 	Type:        "profile-photo",
-	Description: "Profile photo URL",
+	Description: "A profile photo URL",
 	DataType:    URL,
 	Label:       "Profile Photo",
 }
 
 var authentiHash = Definition{
 	Type:        "authentihash",
-	Description: "Authenticode executable signature hash",
+	Description: "An authenticode executable signature hash",
 	DataType:    HEXADECIMAL,
 	Label:       "Authenticode Hash",
 }
 
 var bankAccountNr = Definition{
 	Type:        "bank-account-nr",
-	Description: "Bank account number without any routing number",
+	Description: "A bank account number without any routing number",
 	DataType:    INTEGER,
 	Attributes:  []Definition{bic, bin},
 	Label:       "Bank Account",
@@ -210,28 +210,28 @@ var bankAccountNr = Definition{
 
 var bic = Definition{
 	Type:        "bic",
-	Description: "Bank Identifier Code also known as SWIFT-BIC, SWIFT code or ISO 9362 code",
+	Description: "A bank identifier code also known as SWIFT-BIC, SWIFT code or ISO 9362 code",
 	DataType:    ISTR,
 	Label:       "BIC",
 }
 
 var bin = Definition{
 	Type:        "bin",
-	Description: "Bank Identification Number",
+	Description: "A bank identification number",
 	DataType:    INTEGER,
 	Label:       "BIN",
 }
 
 var btc = Definition{
 	Type:        "btc",
-	Description: "Bitcoin Address",
+	Description: "A bitcoin address",
 	DataType:    STR,
 	Label:       "Bitcoin Address",
 }
 
 var ccNumber = Definition{
 	Type:        "cc-number",
-	Description: "Credit Card Number",
+	Description: "A credit card number",
 	DataType:    INTEGER,
 	Attributes:  []Definition{issuer},
 	Label:       "Credit Card",
@@ -239,14 +239,14 @@ var ccNumber = Definition{
 
 var issuer = Definition{
 	Type:        "issuer",
-	Description: "Issuer name",
+	Description: "An issuer name",
 	DataType:    ISTR,
 	Label:       "Issuer",
 }
 
 var issuingCountry = Definition{
 	Type:        "issuing-country",
-	Description: "Issuing country name",
+	Description: "An issuing country name",
 	DataType:    COUNTRY,
 	Label:       "Issuing Country",
 }
@@ -260,14 +260,14 @@ var cdHash = Definition{
 
 var certificateFingerprint = Definition{
 	Type:        "certificate-fingerprint",
-	Description: "The fingerprint of a SSL/TLS certificate",
+	Description: "A fingerprint of a SSL/TLS certificate",
 	DataType:    HEXADECIMAL,
 	Label:       "Certificate Fingerprint",
 }
 
 var chromeExtension = Definition{
 	Type:        "chrome-extension-id",
-	Description: "Chrome extension ID",
+	Description: "A Chrome extension ID",
 	DataType:    STR,
 	Label:       "Chrome Extension",
 }
@@ -282,42 +282,42 @@ var subnet = Definition{
 
 var cpe = Definition{
 	Type:        "cpe",
-	Description: "Common Platform Enumeration. Structured naming scheme for information technology systems, software, and packages",
+	Description: "A standardized label used to identify applications, operating systems, and hardware devices",
 	DataType:    ISTR,
 	Label:       "Platform Enumeration",
 }
 
 var cve = Definition{
 	Type:        "cve",
-	Description: "Common Vulnerability Enumerator",
+	Description: "A standardized identifier for a known cybersecurity vulnerability",
 	DataType:    ISTR,
 	Label:       "Vulnerability Enumeration",
 }
 
 var dash = Definition{
 	Type:        "dash",
-	Description: "Dash address",
+	Description: "A Dash address",
 	DataType:    STR,
 	Label:       "Dash",
 }
 
 var dkim = Definition{
 	Type:        "dkim",
-	Description: "DKIM public key",
+	Description: "A public key used for email authentication",
 	DataType:    STR,
 	Label:       "DKIM Public Key",
 }
 
 var dkimSignature = Definition{
 	Type:        "dkim-signature",
-	Description: "DKIM signature",
+	Description: "An email authentication method that helps verify the sender of an email and ensures the message hasn't been tampered with in transit",
 	DataType:    STR,
 	Label:       "DKIM Signature",
 }
 
 var domain = Definition{
 	Type:        "domain",
-	Description: "Internet domain",
+	Description: "A human-readable address that points to a specific website or server on the internet",
 	DataType:    FQDN,
 	Attributes:  []Definition{whoIsRegistrant, whoIsRegistrar},
 	Label:       "Domain",
@@ -325,7 +325,7 @@ var domain = Definition{
 
 var email = Definition{
 	Type:         "email",
-	Description:  "Email Message ID",
+	Description:  "An email message ID",
 	DataType:     STR,
 	Attributes:   []Definition{emailBody, emailDisplayName, emailAddress, emailSubject, emailThreadIndex, emailMimeBoundary, emailXMailer},
 	Associations: []Definition{file, emailHeader},
@@ -334,77 +334,77 @@ var email = Definition{
 
 var emailAddress = Definition{
 	Type:        "email-address",
-	Description: "Sender email address",
+	Description: "An email sender address",
 	DataType:    EMAIL,
 	Label:       "Email",
 }
 
 var emailBody = Definition{
 	Type:        "email-body",
-	Description: "Email body",
+	Description: "An email message body",
 	DataType:    ISTR,
 	Label:       "Email Body",
 }
 
 var emailDisplayName = Definition{
 	Type:        "email-display-name",
-	Description: "Sender display name",
+	Description: "An email sender display name",
 	DataType:    ISTR,
 	Label:       "Sender Display Name",
 }
 
 var emailHeader = Definition{
 	Type:        "email-header",
-	Description: "Email header",
+	Description: "An email header",
 	DataType:    STR,
 	Label:       "Email Header",
 }
 
 var emailMimeBoundary = Definition{
 	Type:        "email-mime-boundary",
-	Description: "MIME boundaries are strings of 7-bit US-ASCII text that define the boundaries between message parts in a MIME message. MIME boundaries are declared in a Content-Type message header for any message that encapsulates more than one message part and in part headers for those parts that encapsulate nested parts.",
+	Description: "A strings of 7-bit US-ASCII text that define the boundaries between message parts in a MIME message. MIME boundaries are declared in a Content-Type message header for any message that encapsulates more than one message part and in part headers for those parts that encapsulate nested parts.",
 	DataType:    STR,
 	Label:       "Email Mime Boundary",
 }
 
 var emailSubject = Definition{
 	Type:        "email-subject",
-	Description: "The subject of the email",
+	Description: "An email subject",
 	DataType:    ISTR,
 	Label:       "Email Subject",
 }
 
 var emailThreadIndex = Definition{
 	Type:        "email-thread-index",
-	Description: "The email thread index",
+	Description: "An email thread index",
 	DataType:    BASE64,
 	Label:       "Email Thread Index",
 }
 
 var emailXMailer = Definition{
 	Type:        "email-x-mailer",
-	Description: "Email x-mailer header",
+	Description: "An email x-mailer header",
 	DataType:    ISTR,
 	Label:       "Email X-Mailer",
 }
 
 var eppn = Definition{
 	Type:        "eppn",
-	Description: "The NetId of the person for the purposes of inter-institutional authentication. Should be stored in the form of user@univ.edu, where univ.edu is the name of the local security domain",
+	Description: "A NetId of a person for the purposes of inter-institutional authentication. Should be stored in the form of user@univ.edu, where univ.edu is the name of the local security domain",
 	DataType:    EMAIL,
 	Label:       "EPPN",
 }
 
 var facebookProfile = Definition{
 	Type:        "facebook-profile",
-	Description: "Facebook profile",
+	Description: "A Facebook profile",
 	DataType:    URL,
 	Label:       "Facebook Profile",
 }
 
 var ffn = Definition{
 	Type:        "ffn",
-	Description: "The frequent flyer number of a passanger",
+	Description: "A frequent flyer number of a passenger",
 	DataType:    STR,
 	Label:       "Frequent Flyer Number",
 }
@@ -418,7 +418,7 @@ var filename = Definition{
 
 var sizeInBytes = Definition{
 	Type:        "size-in-bytes",
-	Description: "The size in bytes of an element",
+	Description: "A size in bytes of an element",
 	DataType:    FLOAT,
 	Label:       "Size (Bytes)",
 }
@@ -439,77 +439,77 @@ var flight = Definition{
 
 var gitHubOrganization = Definition{
 	Type:        "github-organization",
-	Description: "Github organization",
+	Description: "A Github organization",
 	DataType:    URL,
 	Label:       "GitHub Organization",
 }
 
 var gitHubRepository = Definition{
 	Type:        "github-repository",
-	Description: "Github repository",
+	Description: "A Github repository",
 	DataType:    URL,
 	Label:       "GitHub Repo",
 }
 
 var gitHubUser = Definition{
 	Type:        "github-user",
-	Description: "Github user",
+	Description: "A Github profile",
 	DataType:    URL,
 	Label:       "GitHub Profile",
 }
 
 var link = Definition{
 	Type:        "link",
-	Description: "External link for reference",
+	Description: "An external link for reference",
 	DataType:    URL,
 	Label:       "Reference",
 }
 
 var datetime = Definition{
 	Type:        "datetime",
-	Description: "Time with nanoseconds in the format 2006-01-02T15:04:05.999999999Z07:00",
+	Description: "A time with nanoseconds in the format 2006-01-02T15:04:05.999999999Z07:00",
 	DataType:    DATETIME,
 	Label:       "Date & Time",
 }
 
 var lastAnalysis = Definition{
 	Type:        "last-analysis",
-	Description: "Time of last analysis. Format 2006-01-02T15:04:05.999999999Z",
+	Description: "A time of last analysis. Format 2006-01-02T15:04:05.999999999Z",
 	DataType:    DATETIME,
 	Label:       "Last Analysis",
 }
 
 var date = Definition{
 	Type:        "date",
-	Description: "Date in format 2006-01-02",
+	Description: "A date in format 2006-01-02",
 	DataType:    DATE,
 	Label:       "Date",
 }
 
 var dateOfIssue = Definition{
 	Type:        "date-of-issue",
-	Description: "Date in format 2006-01-02",
+	Description: "A date in format 2006-01-02",
 	DataType:    DATE,
 	Label:       "Date of Issue",
 }
 
 var expirationDate = Definition{
 	Type:        "expiration-date",
-	Description: "Date in format 2006-01-02",
+	Description: "A date in format 2006-01-02",
 	DataType:    DATE,
 	Label:       "Due Date",
 }
 
 var malwareSample = Definition{
 	Type:        "malware-sample",
-	Description: "Malware Sample URL",
+	Description: "A malware sample URL",
 	DataType:    URL,
 	Label:       "Malware Sample",
 }
 
 var group = Definition{
 	Type:        "group",
-	Description: "Group of adversaries like APTnn or Anonymous",
+	Description: "A group of adversaries like APTnn or Anonymous",
 	DataType:    ADVERSARY,
 	Label:       "Group",
 }
@@ -530,14 +530,14 @@ var base64d = Definition{
 
 var hostname = Definition{
 	Type:        "hostname",
-	Description: "A full host/dnsname of an attacker",
+	Description: "A human-readable name that identifies that specific device, making it easier to locate and interact with it on the network",
 	DataType:    FQDN,
 	Label:       "Host",
 }
 
 var iban = Definition{
 	Type:        "iban",
-	Description: "International Bank Account Number",
+	Description: "An international bank account number",
 	DataType:    ISTR,
 	Label:       "IBAN",
 }
@@ -552,7 +552,7 @@ var idNumber = Definition{
 
 var ipAddr = Definition{
 	Type:        "ip",
-	Description: "IP Address",
+	Description: "An unique numerical identifier assigned to every device connected to a network that uses the internet protocol. It's like a digital address that helps deliver information to the right place on the internet",
 	DataType:    IP,
 	Attributes:  []Definition{subnet},
 	Label:       "IP",
@@ -560,70 +560,70 @@ var ipAddr = Definition{
 
 var ja3Fingerprint = Definition{
 	Type:        "ja3-fingerprint",
-	Description: "JA3 is a method for creating SSL/TLS client fingerprints that should be easy to produce on any platform and can be easily shared for threat intelligence",
+	Description: "An SSL/TLS client fingerprints that is easy to produce on any platform and can be easily shared for threat intelligence",
 	DataType:    MD5,
 	Label:       "JA3 Fingerprint",
 }
 
 var jabberID = Definition{
 	Type:        "jabber-id",
-	Description: "Jabber ID",
+	Description: "A Jabber ID",
 	DataType:    EMAIL,
 	Label:       "Jabber ID",
 }
 
 var jarmFingerprint = Definition{
 	Type:        "jarm-fingerprint",
-	Description: "JARM is a method for creating SSL/TLS server fingerprints",
+	Description: "An SSL/TLS server fingerprints",
 	DataType:    HEXADECIMAL,
 	Label:       "JARM Fingerprint",
 }
 
 var macAddr = Definition{
 	Type:        "mac-address",
-	Description: "Network interface hardware address",
+	Description: "A network interface hardware address",
 	DataType:    MAC,
 	Label:       "Hardware Address",
 }
 
 var malwareFamily = Definition{
 	Type:        "malware-family",
-	Description: "Malware family",
+	Description: "A malware family",
 	DataType:    ISTR,
 	Label:       "Malware Family",
 }
 
 var malwareType = Definition{
 	Type:        "malware-type",
-	Description: "Malware type",
+	Description: "A malware type",
 	DataType:    ISTR,
 	Label:       "Malware Type",
 }
 
 var hashMD5 = Definition{
 	Type:        "md5",
-	Description: "Hash MD5",
+	Description: "A 128-bit fingerprint",
 	DataType:    MD5,
 	Label:       "MD5",
 }
 
 var mimeType = Definition{
 	Type:        "mime-type",
-	Description: "A media type (also MIME type and content type) is a two-part identifier",
+	Description: "A two-part identifier",
 	DataType:    MIME,
 	Label:       "Media Type",
 }
 
 var mobileAppID = Definition{
 	Type:        "mobile-app-id",
-	Description: "The ID of a mobile application",
+	Description: "An ID of a mobile application",
 	DataType:    STR,
 	Label:       "Mobile App ID",
 }
 
 var passport = Definition{
 	Type:        "passport",
-	Description: "Passport number",
+	Description: "A passport number",
 	DataType:    STR,
 	Attributes:  []Definition{issuingCountry, issuer, dateOfIssue, expirationDate},
 	Label:       "Passport Number",
@@ -631,56 +631,56 @@ var passport = Definition{
 
 var pathD = Definition{
 	Type:        "path",
-	Description: "Path to a file, folder or process, also a HTTP request path",
+	Description: "A path to a file, folder or process, also an HTTP request path",
 	DataType:    PATH,
 	Label:       "Path",
 }
 
 var patternInFile = Definition{
 	Type:        "pattern-in-file",
-	Description: "Pattern inside a file",
+	Description: "A pattern inside a file",
 	DataType:    REGEX,
 	Label:       "Pattern in File",
 }
 
 var patternInMemory = Definition{
 	Type:        "pattern-in-memory",
-	Description: "Pattern in memory",
+	Description: "A pattern in memory",
 	DataType:    REGEX,
 	Label:       "Pattern in Memory",
 }
 
 var patternInTraffic = Definition{
 	Type:        "pattern-in-traffic",
-	Description: "Pattern in traffic",
+	Description: "A pattern in traffic",
 	DataType:    REGEX,
 	Label:       "Pattern in Traffic",
 }
 
 var pgpPrivateKey = Definition{
 	Type:        "pgp-private-key",
-	Description: "PGP private key",
+	Description: "A private key of a popular encryption system that uses a combination of different cryptographic techniques",
 	DataType:    STR,
 	Label:       "PGP Private Key",
 }
 
 var pgpPublicKey = Definition{
 	Type:        "pgp-public-key",
-	Description: "PGP public key",
+	Description: "A public key of a popular encryption system that uses a combination of different cryptographic techniques",
 	DataType:    STR,
 	Label:       "PGP Public Key",
 }
 
 var phone = Definition{
 	Type:        "phone",
-	Description: "Phone number",
+	Description: "A phone number",
 	DataType:    PHONE,
 	Label:       "Phone Number",
 }
 
 var pnr = Definition{
 	Type:        "pnr",
-	Description: "The Passenger Name Record Locator is a key under which the reservation for a trip is stored in the system. The PNR contains, among other data, the name, flight segments and address of the passenger. It is defined by a combination of five or six letters and numbers",
+	Description: "A Passenger Name Record Locator is a key under which the reservation for a trip is stored in the system. The PNR contains, among other data, the name, flight segments and address of the passenger. It is defined by a combination of five or six letters and numbers",
 	DataType:    STR,
 	Label:       "Reservation Number",
 }
@@ -695,105 +695,105 @@ var process = Definition{
 
 var processState = Definition{
 	Type:        "process-state",
-	Description: "State of a process",
+	Description: "A state of a process",
 	DataType:    ISTR,
 	Label:       "Process State",
 }
 
 var pRtn = Definition{
 	Type:        "prtn",
-	Description: "Premium-rate telephone number",
+	Description: "A premium-rate phone number",
 	DataType:    ISTR,
 	Label:       "PRTN",
 }
 
 var redress = Definition{
 	Type:        "redress-number",
-	Description: "The Redress Control Number is the record identifier for people who apply for redress through the DHS Travel Redress Inquiry Program (DHS TRIP). DHS TRIP is for travelers who have been repeatedly identified for additional screening and who want to file an inquiry to have erroneous information corrected in DHS systems",
+	Description: "A Redress Control Number is the record identifier for people who apply for redress through the DHS Travel Redress Inquiry Program (DHS TRIP). DHS TRIP is for travelers who have been repeatedly identified for additional screening and who want to file an inquiry to have erroneous information corrected in DHS systems",
 	DataType:    STR,
 	Label:       "Redress Control Number",
 }
 
 var regKey = Definition{
 	Type:        "regkey",
-	Description: "Registry key",
+	Description: "A registry key",
 	DataType:    ISTR,
 	Label:       "Registry Key",
 }
 
 var hashSHA1 = Definition{
 	Type:        "sha1",
-	Description: "Hash SHA1",
+	Description: "A 160-bit fingerprint",
 	DataType:    SHA1,
 	Label:       "SHA-1",
 }
 
 var hashSHA224 = Definition{
 	Type:        "sha224",
-	Description: "Hash SHA-224",
+	Description: "A 224-bit fingerprint",
 	DataType:    SHA224,
 	Label:       "SHA-224",
 }
 
 var hashSHA256 = Definition{
 	Type:        "sha256",
-	Description: "Hash SHA-256",
+	Description: "A 256-bit fingerprint",
 	DataType:    SHA256,
 	Label:       "SHA-256",
 }
 
 var hashSHA384 = Definition{
 	Type:        "sha384",
-	Description: "Hash SHA-384",
+	Description: "A 384-bit fingerprint",
 	DataType:    SHA384,
 	Label:       "SHA-384",
 }
 
 var hashSHA512 = Definition{
 	Type:        "sha512",
-	Description: "Hash SHA-512",
+	Description: "A 512-bit fingerprint",
 	DataType:    SHA512,
 	Label:       "SHA-512",
 }
 
 var hashSHA3224 = Definition{
 	Type:        "sha3-224",
-	Description: "Hash SHA3-224",
+	Description: "A 224-bit fingerprint",
 	DataType:    SHA3_224,
 	Label:       "SHA3-224",
 }
 
 var hashSHA3256 = Definition{
 	Type:        "sha3-256",
-	Description: "Hash SHA3-256",
+	Description: "A 256-bit fingerprint",
 	DataType:    SHA3_256,
 	Label:       "SHA3-256",
 }
 
 var hashSHA3384 = Definition{
 	Type:        "sha3-384",
-	Description: "Hash SHA3-384",
+	Description: "A 384-bit fingerprint",
 	DataType:    SHA3_384,
 	Label:       "SHA3-384",
 }
 
 var hashSHA3512 = Definition{
 	Type:        "sha3-512",
-	Description: "Hash SHA3-512",
+	Description: "A 512-bit fingerprint",
 	DataType:    SHA3_512,
 	Label:       "SHA3-512",
 }
 
 var hashSHA512224 = Definition{
 	Type:        "sha512-224",
-	Description: "Hash SHA512-224",
+	Description: "A 224-bit fingerprint",
 	DataType:    SHA512_224,
 	Label:       "SHA512-224",
 }
 
 var hashSHA512256 = Definition{
 	Type:        "sha512-256",
-	Description: "Hash SHA512-256",
+	Description: "A 256-bit fingerprint",
 	DataType:    SHA512_256,
 	Label:       "SHA512-256",
 }
@@ -807,7 +807,7 @@ var sshFingerprint = Definition{
 
 var sshBanner = Definition{
 	Type:        "ssh-banner",
-	Description: "SSH Hello Banner",
+	Description: "An SSH Hello Banner",
 	DataType:    STR,
 	Label:       "SSH Banner",
 }
@@ -821,21 +821,21 @@ var ssr = Definition{
 
 var category = Definition{
 	Type:        "category",
-	Description: "A category",
+	Description: "A label to classify things that share certain characteristics or qualities",
 	DataType:    ISTR,
 	Label:       "Category",
 }
 
 var threat = Definition{
 	Type:        "threat",
-	Description: "A threat",
+	Description: "A circumstance or event that has the potential to harm a computer system, network, or data. These threats can compromise the confidentiality, integrity, or availability of digital assets",
 	DataType:    ISTR,
 	Label:       "Threat",
 }
 
 var tikTokProfile = Definition{
 	Type:        "tiktok-profile",
-	Description: "TikTok user profile",
+	Description: "A TikTok user profile",
 	DataType:    URL,
 	Label:       "TikTok Profile",
 }
@@ -849,35 +849,35 @@ var twitterProfile = Definition{
 
 var uri = Definition{
 	Type:        "url",
-	Description: "URL",
+	Description: "An address of a specific resource on the internet, such as a webpage, image, video, or document",
 	DataType:    URL,
 	Label:       "URL",
 }
 
 var username = Definition{
 	Type:        "username",
-	Description: "Username",
+	Description: "An unique identifier that can be used to log in to a website, computer system, online service, or application",
 	DataType:    ISTR,
 	Label:       "Username",
 }
 
 var visa = Definition{
 	Type:        "visa",
-	Description: "Traveler visa number",
+	Description: "A visa number",
 	DataType:    STR,
 	Label:       "Visa Number",
 }
 
 var whoIsRegistrant = Definition{
-	Type:        "whois-registrant",
-	Description: "Who is registrant",
+	Type:        "A person or organization who has registered a domain name",
+	Description: "A who is registrant",
 	DataType:    ISTR,
 	Label:       "Registrant",
 }
 
 var whoIsRegistrar = Definition{
 	Type:        "whois-registrar",
-	Description: "whois-registrar",
+	Description: "A company or organization accredited by ICANN (Internet Corporation for Assigned Names and Numbers) to register and manage domain names",
 	DataType:    ISTR,
 	Label:       "Registrar",
 }
@@ -891,28 +891,28 @@ var windowsScheduledTask = Definition{
 
 var windowsServiceDisplayName = Definition{
 	Type:        "windows-service-displayname",
-	Description: "A windows service’s displayname, not to be confused with the windows-service-name. This is the name that applications will generally display as the service’s name in applications",
+	Description: "A Windows Service's display name, not to be confused with the windows-service-name. This is the name that applications will generally display as the service’s name in applications",
 	DataType:    ISTR,
 	Label:       "Service Display Name",
 }
 
 var windowsServiceName = Definition{
 	Type:        "windows-service-name",
-	Description: "A windows service name. This is the name used internally by windows. Not to be confused with the windows-service-displayname",
+	Description: "A Windows Service's name. This is the name used internally by Windows. Not to be confused with the windows-service-displayname",
 	DataType:    ISTR,
 	Label:       "Service Name",
 }
 
 var xmr = Definition{
 	Type:        "xmr",
-	Description: "Monero address",
+	Description: "A Monero address",
 	DataType:    STR,
 	Label:       "Monero Address",
 }
 
 var breach = Definition{
 	Type:        "breach",
-	Description: "Security breach that resulted in a leak of PII or SPII",
+	Description: "A security breach that resulted in a leak of PII (Personally Identifiable Information) or SPII (Sensitive Personally Identifiable Information)",
 	DataType:    UUID,
 	Attributes:  []Definition{domain, link, breachDate, breachCount, breachDescription},
 	Label:       "Breach",
@@ -920,7 +920,7 @@ var breach = Definition{
 
 var breachDate = Definition{
 	Type:        "breach-date",
-	Description: "Day the breach occurred",
+	Description: "Date of breach occurrence",
 	DataType:    DATE,
 	Label:       "Breach Date",
 }
@@ -934,42 +934,42 @@ var breachCount = Definition{
 
 var breachDescription = Definition{
 	Type:        "breach-description",
-	Description: "Detailed description of the breach",
+	Description: "A detailed description of the breach",
 	DataType:    STR,
 	Label:       "Breach Description",
 }
 
 var postalAddress = Definition{
 	Type:        "postal-address",
-	Description: "Postal address",
+	Description: "A postal address",
 	DataType:    ISTR,
 	Label:       "Postal Address",
 }
 
 var zipCode = Definition{
 	Type:        "zip-code",
-	Description: "Zip code",
+	Description: "A number that identifies a specific geographic region also known as Postal Code",
 	DataType:    STR,
 	Label:       "Zip Code",
 }
 
 var port = Definition{
 	Type:        "port",
-	Description: "TCP/UDP Port",
+	Description: "A network ports used in combination with IP addresses to deliver traffic to the right application",
 	DataType:    PORT,
 	Label:       "Port",
 }
 
 var os = Definition{
 	Type:        "os",
-	Description: "Operating System",
+	Description: "A core software that manages a computer's hardware, software resources, and provides an interface for users to interact with the machine",
 	DataType:    ISTR,
 	Label:       "Operating System",
 }
 
 var command = Definition{
 	Type:        "command",
-	Description: "A cli command",
+	Description: "A specific instruction you type within a CLI to tell the computer to perform a task",
 	DataType:    STR,
 	Attributes:  []Definition{os},
 	Label:       "Command",
