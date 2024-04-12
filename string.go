@@ -3,6 +3,8 @@ package validations
 import (
 	"fmt"
 	"strings"
+	"unicode"
+	"unicode/utf8"
 )
 
 // ValidateString validates a string value and returns the original value, its SHA3-256 hash and an error.
@@ -15,6 +17,26 @@ func ValidateString(value interface{}, insensitive bool) (string, string, error)
 
 	if v == "" {
 		return "", "", fmt.Errorf("value cannot be empty")
+	}
+
+	replacement, _ := utf8.DecodeRuneInString(" ")
+	allowed := "\r\n \r \n"
+	v = strings.Map(func(r rune) rune {
+		if unicode.IsGraphic(r) {
+			return r
+		}
+
+		for _, c := range allowed {
+			if r == c {
+				return r
+			}
+		}
+
+		return replacement
+	}, v)
+
+	if !utf8.ValidString(v) {
+		return "", "", fmt.Errorf("value is not an UTF-8 valid string")
 	}
 
 	if insensitive {
