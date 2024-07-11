@@ -869,8 +869,8 @@ var visa = Definition{
 }
 
 var whoIsRegistrant = Definition{
-	Type:        "A person or organization who has registered a domain name",
-	Description: "A who is registrant",
+	Type:        "whois-registrant",
+	Description: "A person or organization who has registered a domain name",
 	DataType:    ISTR,
 	Label:       "Registrant",
 }
