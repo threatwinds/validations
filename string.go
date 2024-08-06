@@ -18,7 +18,12 @@ func ValidateString(value interface{}, insensitive bool) (string, string, error)
 	replacement, _ := utf8.DecodeRuneInString(" ")
 	allowed := "\r\n \r \n"
 	v = strings.Map(func(r rune) rune {
-		if unicode.IsGraphic(r) {
+		if unicode.IsLetter(r) || 
+		unicode.IsDigit(r) || 
+		unicode.IsPunct(r) || 
+		unicode.IsSpace(r) || 
+		unicode.IsNumber(r) || 
+		unicode.IsSymbol(r) {
 			return r
 		}
 
